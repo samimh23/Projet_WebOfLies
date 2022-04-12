@@ -435,7 +435,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         <a href="./update.php?id=<?php echo $event['id'] ?>" title="Edit details" class="btn btn-sm btn-clean btn-icon btn-icon-md">
                                                             <i class="la la-edit"></i>
                                                         </a>
-                                                        <a href="./supprimer.php?id=<?php echo $event['id'] ?>" title="Delete" class="btn btn-sm btn-clean btn-icon btn-icon-md">
+                                                        <a href="./supprimer.php?id=<?php echo $event['id'] ?>" onclick="alert('supprimer');" title="Delete" class="btn btn-sm btn-clean btn-icon btn-icon-md">
                                                             <i class="la la-trash"></i>
                                                         </a>
                                                     </td>
