@@ -2,7 +2,6 @@
 session_start();
   class config {
     private static $pdo = NULL;
-
     public static function getConnexion() {
       if (!isset(self::$pdo)) {
         try{

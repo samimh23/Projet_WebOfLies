@@ -1,6 +1,6 @@
 <?php
 require_once '../config.php';
-include_once dirname(__FILE__).'/../models/utilisateurs.php';
+include_once '../models/utilisateurs.php';
 class utilisateurc{
     function recupererutilisateur(){
         $sql="SELECT * FROM user";
@@ -57,23 +57,28 @@ function recupererutilisateurinfo($id){
         die('Erreur: '.$e->getMessage());
     }
 }
-function modifierutilisateur($user, $email){
+function modifierutilisateur($user, $id){
     try {
         $db = config::getConnexion();
         $query = $db->prepare(
             'UPDATE user SET 
                 nom= :nom, 
                 prenom= :prenom, 
-                pwd= :pwd, 
-            WHERE email= :email'
+                email= :email,
+                pwd= :pwd 
+            WHERE id= :id'
         );
         $query->execute([
+            'id' => $id,
             'nom' => $user->getNom(),
             'prenom' => $user->getPrenom(),
-            'pwd' => $user->getPassword(),
-            'email' => $email
+            'email' => $user->getEmail(),
+            'pwd' => $user->getPassword()
             
         ]);
+
+
+
         //echo $query->rowCount() . " records UPDATED successfully <br>";
     } catch (PDOException $e) {
         $e->getMessage();

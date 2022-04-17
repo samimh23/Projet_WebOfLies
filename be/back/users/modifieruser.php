@@ -12,14 +12,14 @@
     if (
 		isset($_POST["nom"]) &&		
         isset($_POST["prenom"]) &&
-		//isset($_POST["id"]) && 
+		isset($_POST["id"]) && 
         isset($_POST["email"]) && 
         isset($_POST["password"])
     ) {
         if (
 			!empty($_POST['nom']) &&
             !empty($_POST["prenom"]) && 
-		//	!empty($_POST["id"]) && 
+			!empty($_POST["id"]) && 
             !empty($_POST["email"]) && 
             !empty($_POST["password"])
         ) {
@@ -28,7 +28,7 @@
                 $_POST['prenom'], 
 				$_POST['password'],
                 $_POST['email'],
-               // $_POST['id']
+                $_POST['id']
             );
             $utilisateurc->modifierutilisateur($utilisateur, $_POST["id"]);
             header('Location:utilisateur.php');

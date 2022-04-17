@@ -1,8 +1,8 @@
 <?php 
 
-// include '../models/utilisateurs.php';
+ include_once '../models/utilisateurs.php';
 require_once '../config.php';
-include '../controllers/utilisateursC.php';
+include_once '../controllers/utilisateursC.php';
 // create an instance of the controller
 /*$utilisateurC = new utilisateurc();
 if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['pwd'])&& isset($_POST['rpwd'])) {

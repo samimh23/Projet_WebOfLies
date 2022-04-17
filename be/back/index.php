@@ -1,6 +1,7 @@
 <?php
-require_once './config.php';
-	include './controllers/utilisateursC.php';
+    require_once 'config.php';
+	include_once './controllers/utilisateursC.php';
+	include_once './models/utilisateurs.php';
 	$utilisateurc = new utilisateurc();
     $utilisateur = $utilisateurc->recupererutilisateur();
 ?>

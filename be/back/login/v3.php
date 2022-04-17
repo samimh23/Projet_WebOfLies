@@ -1,52 +1,73 @@
-<?php
- include '../controllers/utilisateursC.php';
- $error = "";
+<<?php
 
-    $k=0;
+ include '../controllers/utilisateursC.php';
+
+
+ function foo(){
+ $error = "";
     $utilisateur=null;
     $utilisateurc= new utilisateurc;
-    $listeutilisateurs=$utilisateurc->recupererutilisateur();
-    if (
-		// isset($_POST["id"]) &&
-		isset($_POST["nom"]) &&		
-        isset($_POST["prenom"]) &&
-        isset($_POST["email"]) && 
-        isset($_POST["pwd"]) 
-    ) {
-        if (
-			// !empty($_POST['id']) &&
-			!empty($_POST['nom']) &&
-            !empty($_POST["prenom"]) && 
-            !empty($_POST["email"]) &&
-            !empty($_POST["pwd"])
+	$utilisateur1c= new utilisateurc;
+    $listeutilisateurs=$utilisateur1c->recupererutilisateur();
+	$utilisateur2c= new utilisateurc;
 
-        ) {
+	$isset= isset($_POST["id"]) && isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["email"]) && isset($_POST["pwd"]) ;
+	$notempty=!empty($_POST["id"]) &&
+	!empty($_POST['nom']) &&
+	!empty($_POST["prenom"]) && 
+	!empty($_POST["email"]) &&
+	!empty($_POST["pwd"]) ;
+
+    if ($isset) {
+
+        if ($notempty) {
+
+
+
             
-    foreach ($listeutilisateurs as $utilisateur)
-     {
-          /*if($utilisateur['username']==$_POST['username']) {
-            $error = 'username takendd!!';
-               $k=1;
-          }*/
-            }
-        if($k==0) {
+    // foreach ($listeutilisateurs as $utilisateur)
+    //  {
+    //     //   if($utilisateur['username']==$_POST['username']) {
+    //         // $error = 'username takendd!!';
+    //         //    $k=1;
+    //     //   }
+    //         }
 
-            $utilisateur = new utilisateur(
-				// $_POST['id'],
+		$statement=$utilisateurc->getUser($_POST['id']);
+		
+		if($statement->rowCount()>0)
+		{
+			
+			$utilisateur = new utilisateur(
+				$_POST['id'],
 				$_POST['nom'],
                 $_POST['prenom'], 
                 $_POST['email'],
                 // password_hash($_POST['pwd'],PASSWORD_DEFAULT)
-				$_POST['pwd'],
+				$_POST['pwd']
             );
-            $utilisateurc->modifierutilisateur($utilisateur,$_POST['email']);
-        }
+            $utilisateurc->modifierutilisateur($utilisateur,$_POST['id']);
+		}
         
-        }
+    	}
         else
             $error = "Missing information";
     }
-  
+
+}
+
+
+
+if(isset($_POST['id']) )
+foo();
+	/*$id = $_GET['id'];
+	$utilisateurc= new utilisateurc;
+    $listeutilisateurs=$utilisateurc->getUser($id);
+	if(isset($_POST['id']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['pwd'])) {
+        $utilisateur = new utilisateur($_POST['id'],$_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['pwd']);
+        $utilisateurc->modifierutilisateur($utilisateur,$_POST['id']);
+        header('Location: ../index.php');
+	}*/
 ?>
 <!DOCTYPE html>
 
@@ -189,6 +210,9 @@ License: You must have a valid license purchased only from themeforest(the above
 									<div class="kt-login__desc">Enter your details to change your password:</div>
 								</div>
 								<form class="kt-form" method="POST" action="">
+								<div class="input-group">
+										<input class="form-control" type="number" placeholder="id" id="id" name="id">
+									</div>
 								    <div class="input-group">
 										<input class="form-control" type="text" placeholder="LastName" id="nom" name="nom">
 									</div>
@@ -201,6 +225,9 @@ License: You must have a valid license purchased only from themeforest(the above
 									<div class="input-group">
 										<input class="form-control" type="text" placeholder="Password" id="pwd" name="pwd">
 									</div>
+									<!--<div class="input-group">
+										<input class="form-control" type="text" placeholder="New Password" id="pwd1" name="pwd1">
+									</div>-->
 									<div class="row kt-login__extra">
 										<div class="col kt-align-left">
 											<label class="kt-checkbox">
