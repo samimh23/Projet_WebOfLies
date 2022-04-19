@@ -1,9 +1,9 @@
 <?php
-    //require_once 'config.php';
+	require_once './../controllers/config.php';
 	include_once '../controllers/utilisateursC.php';
 	//include_once '../models/utilisateurs.php';
 	$utilisateurc = new utilisateurc();
-    $utilisateur = $utilisateurc->recupererutilisateur();
+    $liste = $utilisateurc->recupererutilisateur();
 ?>
 <!DOCTYPE html>
 
@@ -304,7 +304,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 									<!--begin: Navigation -->
 									<div class="kt-notification">
-										<a href= "./v3.php" class="kt-notification__item">
+										<a href= "./update.php" class="kt-notification__item">
 											<div class="kt-notification__item-icon">
 												<i class="flaticon2-calendar-3 kt-font-success"></i>
 											</div>
@@ -425,7 +425,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </thead>
                                         <tbody>
                                             <?php
-                                                foreach($utilisateur as $utilisateur){
+                                                foreach($liste as $utilisateur){
                                             ?>
                                                 <tr>
                                                     <th scope="row"><?php echo $utilisateur['id'] ?></th>
@@ -437,14 +437,14 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         <a href="./update.php?id=<?php echo $utilisateur['id'] ?>" title="Edit details" class="btn btn-sm btn-clean btn-icon btn-icon-md">
                                                             <i class="la la-edit"></i>
                                                         </a>
-                                                        <a href="./supprimeruser.php?id=<?php echo $utilisateur['id'] ?>" title="Delete" class="btn btn-sm btn-clean btn-icon btn-icon-md">
+                                                        <a href="./../supprimeruser.php?id=<?php echo $utilisateur['id'] ?>" title="Delete" class="btn btn-sm btn-clean btn-icon btn-icon-md">
                                                             <i class="la la-trash"></i>
                                                         </a>
                                                     </td>
                                                 </tr>
-                                            <?php
+                                           <?php
                                                 }
-                                            ?>
+                                            ?> 
                                         </tbody>
                                     </table>
 

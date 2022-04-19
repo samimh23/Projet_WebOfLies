@@ -1,4 +1,5 @@
 <?php
+require_once '../controllers/config.php';
 include_once '../controllers/utilisateursC.php';
 include_once '../models/utilisateurs.php';
 if(isset($_POST["email2"]) && 

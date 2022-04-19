@@ -1,4 +1,5 @@
 <?php 
+require_once '../controllers/config.php';
 include_once '../controllers/utilisateursC.php';
 include_once '../models/utilisateurs.php';
 //require '../config.php';
@@ -12,10 +13,10 @@ if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && 
 	//header('Location:index.php');*/
 	
     $utilisateurC = new utilisateurc();
-    if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['pwd'])) {
+    if(isset($_POST['lastname']) && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['pwd'])) {
 	
-        $utilisateur = new utilisateur($_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['pwd']);
-        $utilisateurC->modifierutilisateur($utilisateur,$_GET['email']);}
+        $utilisateur = new utilisateur($_POST['lastname'],$_POST['name'],$_POST['email'],$_POST['pwd']);
+        $utilisateurC->modifierutilisateur($utilisateur,$_POST['email']);}
     
 ?>
 										
@@ -130,15 +131,15 @@ License: You must have a valid license purchased only from themeforest(the above
 							
 							<div class="kt-login__signup">
 								<div class="kt-login__head">
-									<h3 class="kt-login__title">Sign Up</h3>
-									<div class="kt-login__desc">Enter your details to create your account:</div>
+									<h3 class="kt-login__title">Modify</h3>
+									<div class="kt-login__desc">Enter your details to change your account details:</div>
 								</div>
 								<form class="kt-form" method="POST" action="">
 								    <div class="input-group">
-										<input class="form-control" type="text" placeholder="Name" id="nom" name="nom">
+										<input class="form-control" type="text" placeholder="Name" id="nom" name="lastname">
 									</div>
 									<div class="input-group">
-										<input class="form-control" type="text" placeholder="Lastname" id="prenom" name="prenom">
+										<input class="form-control" type="text" placeholder="Lastname" id="prenom" name="name">
 									</div>
 									<div class="input-group">
 										<input class="form-control" type="text" placeholder="Email" id="email" name="email" autocomplete="on">
@@ -147,17 +148,8 @@ License: You must have a valid license purchased only from themeforest(the above
 										<input class="form-control" type="password" placeholder="Password" id="pwd" name="pwd">
 									</div>
 						
-									<div class="row kt-login__extra">
-										<div class="col kt-align-left">
-											<label class="kt-checkbox">
-												<input type="checkbox" name="agree">I Agree the <a href="../../LICENSE.txt" class="kt-link kt-login__link kt-font-bold">terms and conditions</a>.
-												<span></span>
-											</label>
-											<span class="form-text text-muted"></span>
-										</div>
-									</div>
 									<div class="kt-login__actions">
-										<button type ="submit" id="kt_login_signup_submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Sign Up</button>&nbsp;&nbsp;
+										<button type ="submit" id="kt_login_signup_submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Confirm</button>&nbsp;&nbsp;
 										<button id="kt_login_signup_cancel" class="btn btn-light btn-elevate kt-login__btn-secondary">Cancel</button>
 									</div>
 								</form>

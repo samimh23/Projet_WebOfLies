@@ -40,9 +40,9 @@ if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && 
 				$_POST['pwd'],
             );
             $utilisateurc->ajouterutilisateur($utilisateur);
-			
+			header('location: index.php?status=success');
         }
-        header('location: index.php');
+        
     }
     
 	else
@@ -163,7 +163,24 @@ License: You must have a valid license purchased only from themeforest(the above
 									<h3 class="kt-login__title">Sign In To Admin</h3>
 								</div>
 								<?php
-								include_once './signin.php';
+								
+								if(isset($_POST["email2"]) && 
+								isset($_POST["pwd2"]))
+								{
+									if( !empty($_POST["email2"]) &&
+									!empty($_POST["pwd2"]))
+									{
+										foreach ($listeutilisateurs as $utilisateurc)
+								{
+									  $verifm = password_verify($_POST['pwd2'], $utilisateurc['pwd']);
+									
+								if (($_POST['email2']==$utilisateurc['email'])&&($verifm==true)) 
+								{
+									$_session ['email2']=$_POST["email2"];
+									$_session ['pwd2']=$_POST["pwd2"];
+									header('location: ./index.php');
+									}
+								}}} 
 								?>
 								<form class="kt-form" method="POST" action="">
 									<div class="input-group">
