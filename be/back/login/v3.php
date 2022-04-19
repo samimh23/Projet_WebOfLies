@@ -3,20 +3,18 @@
  include '../controllers/utilisateursC.php';
 
 
- function foo(){
+
  $error = "";
     $utilisateur=null;
     $utilisateurc= new utilisateurc;
-	$utilisateur1c= new utilisateurc;
-    $listeutilisateurs=$utilisateur1c->recupererutilisateur();
-	$utilisateur2c= new utilisateurc;
+    $listeutilisateurs=$utilisateurc->recupererutilisateur();
 
-	$isset= isset($_POST["id"]) && isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["email"]) && isset($_POST["pwd"]) ;
-	$notempty=!empty($_POST["id"]) &&
-	!empty($_POST['nom']) &&
-	!empty($_POST["prenom"]) && 
-	!empty($_POST["email"]) &&
-	!empty($_POST["pwd"]) ;
+	$isset=isset($_POST["nom4"]) && isset($_POST["prenom4"]) && isset($_POST["email4"]) && isset($_POST["pwd4"]) ;
+	$notempty=!empty($_POST["id4"]) &&
+	!empty($_POST["nom4"]) &&
+	!empty($_POST["prenom4"]) && 
+	!empty($_POST["email4"]) &&
+	!empty($_POST["pwd4"]) ;
 
     if ($isset) {
 
@@ -33,33 +31,32 @@
     //     //   }
     //         }
 
-		$statement=$utilisateurc->getUser($_POST['id']);
+		// $statement=$utilisateurc->recupererutilisateurinfo($_POST["id4"]);
 		
-		if($statement->rowCount()>0)
-		{
+		// if($statement->rowCount()>0)
+		// {
 			
 			$utilisateur = new utilisateur(
-				$_POST['id'],
-				$_POST['nom'],
-                $_POST['prenom'], 
-                $_POST['email'],
+				$_POST['nom4'],
+                $_POST['prenom4'], 
+                $_POST['email4'],
                 // password_hash($_POST['pwd'],PASSWORD_DEFAULT)
-				$_POST['pwd']
+				$_POST['pwd4']
             );
-            $utilisateurc->modifierutilisateur($utilisateur,$_POST['id']);
-		}
+            $utilisateurc->modifierutilisateur($utilisateur,$_GET['id']);
+		// }
         
     	}
         else
             $error = "Missing information";
     }
 
-}
 
 
 
-if(isset($_POST['id']) )
-foo();
+
+// if(isset($_POST['id4']) )
+// foo();
 	/*$id = $_GET['id'];
 	$utilisateurc= new utilisateurc;
     $listeutilisateurs=$utilisateurc->getUser($id);
@@ -204,30 +201,30 @@ License: You must have a valid license purchased only from themeforest(the above
 									</div>
 								</form>
 							</div>-->
-							<div class="kt-login__signup">
+							<!--<div class="kt-login__signup">
 								<div class="kt-login__head">
 									<h3 class="kt-login__title">Sign Up</h3>
 									<div class="kt-login__desc">Enter your details to change your password:</div>
 								</div>
 								<form class="kt-form" method="POST" action="">
 								<div class="input-group">
-										<input class="form-control" type="number" placeholder="id" id="id" name="id">
+										<input class="form-control" type="number" placeholder="id" id="id" name="id4">
 									</div>
 								    <div class="input-group">
-										<input class="form-control" type="text" placeholder="LastName" id="nom" name="nom">
+										<input class="form-control" type="text" placeholder="LastName" id="nom" name="nom4">
 									</div>
 									<div class="input-group">
-										<input class="form-control" type="text" placeholder="Name" id="prenom" name="prenom">
+										<input class="form-control" type="text" placeholder="Name" id="prenom" name="prenom4">
 									</div>
 									<div class="input-group">
-										<input class="form-control" type="text" placeholder="Email" id="email" name="email" autocomplete="off">
+										<input class="form-control" type="text" placeholder="Email" id="email" name="email4" autocomplete="off">
 									</div>
 									<div class="input-group">
-										<input class="form-control" type="text" placeholder="Password" id="pwd" name="pwd">
+										<input class="form-control" type="text" placeholder="Password" id="pwd" name="pwd4">
 									</div>
-									<!--<div class="input-group">
+									<div class="input-group">
 										<input class="form-control" type="text" placeholder="New Password" id="pwd1" name="pwd1">
-									</div>-->
+									</div>
 									<div class="row kt-login__extra">
 										<div class="col kt-align-left">
 											<label class="kt-checkbox">
@@ -242,29 +239,18 @@ License: You must have a valid license purchased only from themeforest(the above
 										<button id="kt_login_signup_cancel" class="btn btn-light btn-elevate kt-login__btn-secondary">Cancel</button>
 									</div>
 								</form>
-							</div>
-							<div class="kt-login__forgot">
-								<div class="kt-login__head">
-									<h3 class="kt-login__title">Forgotten Password ?</h3>
-									<div class="kt-login__desc">Enter your email to reset your password:</div>
-								</div>
-								<form class="kt-form" action="">
-									<div class="input-group">
-										<input class="form-control" type="text" placeholder="Email" name="email" id="kt_email" autocomplete="off">
-									</div>
-									<div class="kt-login__actions">
-										<button id="kt_login_forgot_submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Request</button>&nbsp;&nbsp;
-										<button id="kt_login_forgot_cancel" class="btn btn-light btn-elevate kt-login__btn-secondary">Cancel</button>
-									</div>
-								</form>
-							</div>
+							</div>-->
+							<?php  foreach($listeutilisateurs as $utilisateurc) 
+							?>
 							<div class="kt-login__account">
-								<span class="kt-login__account-msg">
-									you want to change your password ?
-								</span>
-								&nbsp;&nbsp;
-								<a href="javascript:;" id="kt_login_signup" class="kt-login__account-link">Go ahead!</a>
+								
+								    <div class="input-group">
+										<input class="form-control" type="text" placeholder="Email" id="email" name="email4" autocomplete="off">	
+									</div>
+								<a href="./update.php"<?php ?> >go ahead</a>
+								
 							</div>
+							
 						</div>
 					</div>
 				</div>

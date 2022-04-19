@@ -10,44 +10,13 @@ if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && 
 	$utilisateur = new utilisateur($_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['pwd'],$_POST['rpwd']);
 	$utilisateurC->ajouterutilisateur($utilisateur);}
 	//header('Location:index.php');*/
-	$error = "";
-
-    $k=0;
-    $utilisateur=null;
-    $utilisateurc= new utilisateurc;
-    $listeutilisateurs=$utilisateurc->recupererutilisateur();
-    if (
-		// isset($_POST["id"]) &&
-		isset($_POST["nom"]) &&		
-        isset($_POST["prenom"]) &&
-        isset($_POST["email"]) && 
-        isset($_POST["pwd"]) 
-    ) {
-        if (
-			// !empty($_POST['id']) &&
-			!empty($_POST['nom']) &&
-            !empty($_POST["prenom"]) && 
-            !empty($_POST["email"]) &&
-            !empty($_POST["pwd"])
-
-        ) {
-            $utilisateur = new utilisateur(
-				// $_POST['id'],
-				$_POST['nom'],
-                $_POST['prenom'], 
-                $_POST['email'],
-                // password_hash($_POST['pwd'],PASSWORD_DEFAULT)
-				$_POST['pwd'],
-            );
-            $utilisateurc->ajouterutilisateur($utilisateur);
-			
-        }
-        header('location: index.php');
-    }
+	
+    $utilisateurC = new utilisateurc();
+    if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['pwd'])) {
+	
+        $utilisateur = new utilisateur($_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['pwd']);
+        $utilisateurC->modifierutilisateur($utilisateur,$_GET['email']);}
     
-	else
-            $error = "Missing information";
-     
 ?>
 										
 <!DOCTYPE html>
@@ -148,8 +117,8 @@ License: You must have a valid license purchased only from themeforest(the above
 	<body class="kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
 
 		<!-- begin:: Page -->
-		<div class="kt-grid kt-grid--ver kt-grid--root">
-			<div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v3 kt-login--signin" id="kt_login">
+		<!-- <div class="kt-grid kt-grid--ver kt-grid--root"> -->
+			<!--<div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v3 kt-login--signin" id="kt_login">-->
 				<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" style="background-image: url(../assets/media//bg/bg-3.jpg);">
 					<div class="kt-grid__item kt-grid__item--fluid kt-login__wrapper">
 						<div class="kt-login__container">
@@ -158,37 +127,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<img src="../assets/media/logos/logo-5.png">
 								</a>
 							</div>
-							<div class="kt-login__signin">
-								<div class="kt-login__head">
-									<h3 class="kt-login__title">Sign In To Admin</h3>
-								</div>
-								<?php
-								include_once './signin.php';
-								?>
-								<form class="kt-form" method="POST" action="">
-									<div class="input-group">
-										<input class="form-control" type="text" placeholder="Email"  name="email2" autocomplete="on">
-									</div>
-									<div class="input-group">
-										<input class="form-control" type="password" placeholder="Password"  name="pwd2">
-									</div>
-									<div class="row kt-login__extra">
-										<div class="col">
-											<label class="kt-checkbox">
-												<input type="checkbox" name="remember"> Remember me
-												<span></span>
-											</label>
-										</div>
-										<div class="col kt-align-right">
-											<a href="javascript:;" id="kt_login_forgot" class="kt-login__link">Forget Password ?</a>
-										</div>
-									</div>
-									<div class="kt-login__actions">
-										
-										<button type="submit" id="kt_login_sign_submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Sign In</button>
-									</div>
-								</form>
-							</div>
+							
 							<div class="kt-login__signup">
 								<div class="kt-login__head">
 									<h3 class="kt-login__title">Sign Up</h3>
@@ -218,38 +157,16 @@ License: You must have a valid license purchased only from themeforest(the above
 										</div>
 									</div>
 									<div class="kt-login__actions">
-										<button type ="submit" id="kt_login_signup_submit" class="btn btn-brand btn-elevate kt-login__btn-primary"><a href="index.php"></a>Sign Up</button>&nbsp;&nbsp;
+										<button type ="submit" id="kt_login_signup_submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Sign Up</button>&nbsp;&nbsp;
 										<button id="kt_login_signup_cancel" class="btn btn-light btn-elevate kt-login__btn-secondary">Cancel</button>
 									</div>
 								</form>
 							</div>
-							<div class="kt-login__forgot">
-								<div class="kt-login__head">
-									<h3 class="kt-login__title">Forgotten Password ?</h3>
-									<div class="kt-login__desc">Enter your email to reset your password:</div>
-								</div>
-								<form class="kt-form" action="">
-									<div class="input-group">
-										<input class="form-control" type="text" placeholder="Email" name="email3" id="kt_email" autocomplete="off">
-									</div>
-									<div class="kt-login__actions">
-										<button id="kt_login_forgot_submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Request</button>&nbsp;&nbsp;
-										<button id="kt_login_forgot_cancel" class="btn btn-light btn-elevate kt-login__btn-secondary">Cancel</button>
-									</div>
-								</form>
-							</div>
-							<div class="kt-login__account">
-								<span class="kt-login__account-msg">
-									Don't have an account yet ?
-								</span>
-								&nbsp;&nbsp;
-								<a href="javascript:;" id="kt_login_signup" class="kt-login__account-link">Sign Up!</a>
-							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+			<!--</div>-->
+		<!-- </div> -->
 
 		<!-- end:: Page -->
 

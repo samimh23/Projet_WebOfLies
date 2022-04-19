@@ -1,5 +1,5 @@
 <?php
-require_once '../config.php';
+require_once 'config.php';
 include_once '../models/utilisateurs.php';
 class utilisateurc{
     function recupererutilisateur(){
@@ -14,17 +14,17 @@ class utilisateurc{
     }
     
 }
-function ajouterutilisateur($user){
+function ajouterutilisateur($utilisateur){
     $sql="INSERT INTO user (nom, prenom, email, pwd) VALUES (:nom,:prenom,:email,:pwd)";
     $db = config::getConnexion();
     try{
         $query = $db->prepare($sql);
         $query->execute([
-           // 'id' => $user->getId(),
-            'nom' => $user->getNom(),
-            'prenom' => $user->getPrenom(),
-            'email' => $user->getEmail(), 
-            'pwd' => $user->getPassword()
+           // 'id' => $utilisateur->getId(),
+            'nom' => $utilisateur->getNom(),
+            'prenom' => $utilisateur->getPrenom(),
+            'email' => $utilisateur->getEmail(), 
+            'pwd' => $utilisateur->getPassword()
         ]);			
     }
     catch (Exception $e){
@@ -57,35 +57,26 @@ function recupererutilisateurinfo($id){
         die('Erreur: '.$e->getMessage());
     }
 }
-function modifierutilisateur($user, $id){
+function modifierutilisateur($utilisateur, $email){
     try {
         $db = config::getConnexion();
         $query = $db->prepare(
             'UPDATE user SET 
                 nom= :nom, 
                 prenom= :prenom, 
-                email= :email,
                 pwd= :pwd 
-            WHERE id= :id'
+            WHERE email= :email'
         );
         $query->execute([
-            'id' => $id,
-            'nom' => $user->getNom(),
-            'prenom' => $user->getPrenom(),
-            'email' => $user->getEmail(),
-            'pwd' => $user->getPassword()
-            
+            'nom' => $utilisateur->getNom(),
+            'prenom' => $utilisateur->getPrenom(),
+            'pwd' => $utilisateur->getPassword(),
+            'email' => $email  
         ]);
-
-
-
-        //echo $query->rowCount() . " records UPDATED successfully <br>";
+        echo $query->rowCount() . " records UPDATED successfully <br>";
     } catch (PDOException $e) {
         $e->getMessage();
     }
 }
-
-
-
 }
 ?>
