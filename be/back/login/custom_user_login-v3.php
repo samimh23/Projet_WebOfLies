@@ -1,4 +1,5 @@
-<?php 
+<?php
+require_once '../controllers/config.php';
 include_once '../controllers/utilisateursC.php';
 include_once '../models/utilisateurs.php';
 //require '../config.php';
@@ -10,49 +11,76 @@ if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && 
 	$utilisateur = new utilisateur($_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['pwd'],$_POST['rpwd']);
 	$utilisateurC->ajouterutilisateur($utilisateur);}
 	//header('Location:index.php');*/
-	$error = "";
+$error = "";
 
-    $k=0;
-    $utilisateur=null;
-    $utilisateurc= new utilisateurc;
-    $listeutilisateurs=$utilisateurc->recupererutilisateur();
-    if (
-		// isset($_POST["id"]) &&
-		isset($_POST["nom"]) &&		
-        isset($_POST["prenom"]) &&
-        isset($_POST["email"]) && 
-        isset($_POST["pwd"]) 
-    ) {
-        if (
-			// !empty($_POST['id']) &&
-			!empty($_POST['nom']) &&
-            !empty($_POST["prenom"]) && 
-            !empty($_POST["email"]) &&
-            !empty($_POST["pwd"])
+$k = 0;
+$utilisateur = null;
+$utilisateurc = new utilisateurc;
+$listeutilisateurs = $utilisateurc->recupererutilisateur();
+if (
+	// isset($_POST["id"]) &&
+	isset($_POST["nom"]) &&
+	isset($_POST["prenom"]) &&
+	isset($_POST["email"]) &&
+	isset($_POST["pwd"])
+) {
+	if (
+		// !empty($_POST['id']) &&
+		!empty($_POST['nom']) &&
+		!empty($_POST["prenom"]) &&
+		!empty($_POST["email"]) &&
+		!empty($_POST["pwd"])
 
-        ) {
-            $utilisateur = new utilisateur(
+	) {
+		foreach ($listeutilisateurs as $utilisateur) {
+			if ($utilisateur['email'] == $_POST['email']) {
+				$error = 'email takendd!!';
+				$k = 1;
+			}
+		}
+		if ($k == 0) {
+			$utilisateur = new utilisateur(
 				// $_POST['id'],
 				$_POST['nom'],
-                $_POST['prenom'], 
-                $_POST['email'],
-                // password_hash($_POST['pwd'],PASSWORD_DEFAULT)
+				$_POST['prenom'],
+				$_POST['email'],
+				// password_hash($_POST['pwd'],PASSWORD_DEFAULT)
 				$_POST['pwd'],
-            );
-            $utilisateurc->ajouterutilisateur($utilisateur);
-			header('location: index.php?status=success');
-        }
-        
-    }
-    
-	else
-            $error = "Missing information";
-     
-?>
-										
-<!DOCTYPE html>
+			);
+			$utilisateurc->ajouterutilisateur($utilisateur);
+			// header('location: index.php?status=success');
+			exit;
+		}
+	} else
+		$error = "Missing information";
+}
+// ob_start();
+// session_start();
+// $_SESSION['mail']=$_POST['mail'];
+// $_SESSION['passworrd']=$_POST['passworrd'];
+if (
+	isset($_POST['mail']) &&
+	isset($_POST["passworrd"])
+) {
+	if (
+		!empty($_POST['mail']) &&
+		!empty($_POST['passworrd'])
+	) {
+		foreach ($listeutilisateurs as $utilisateur) {
 
-<!-- 
+			if (($_POST['mail'] == $utilisateur['email']) && ($_POST['passworrd'] == $utilisateur['pwd'])) {
+				// $_session['mail'] = $_POST['mail'];
+				// $_session['passworrd'] = $_POST['passworrd'];
+				header('Location: index.php');
+			}
+		}
+	}
+}
+?>
+
+	<!DOCTYPE html>
+
+	<!-- 
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4 & Angular 7
 Author: KeenThemes
 Website: http://www.keenthemes.com/
@@ -64,9 +92,10 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 Renew Support: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
 License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
 -->
-<html lang="en">
+	<html lang="en">
 
 	<!-- begin::Head -->
+
 	<head>
 		<meta charset="utf-8" />
 		<title>Metronic | Login Page v3</title>
@@ -145,6 +174,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!-- end::Head -->
 
 	<!-- begin::Body -->
+
 	<body class="kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
 
 		<!-- begin:: Page -->
@@ -161,33 +191,19 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="kt-login__signin">
 								<div class="kt-login__head">
 									<h3 class="kt-login__title">Sign In To Admin</h3>
+									<?php
+
+									?>
 								</div>
-								<?php
-								
-								if(isset($_POST["email2"]) && 
-								isset($_POST["pwd2"]))
-								{
-									if( !empty($_POST["email2"]) &&
-									!empty($_POST["pwd2"]))
-									{
-										foreach ($listeutilisateurs as $utilisateurc)
-								{
-									  $verifm = password_verify($_POST['pwd2'], $utilisateurc['pwd']);
-									
-								if (($_POST['email2']==$utilisateurc['email'])&&($verifm==true)) 
-								{
-									$_session ['email2']=$_POST["email2"];
-									$_session ['pwd2']=$_POST["pwd2"];
-									header('location: ./index.php');
-									}
-								}}} 
-								?>
+
+
+
 								<form class="kt-form" method="POST" action="">
 									<div class="input-group">
-										<input class="form-control" type="text" placeholder="Email"  name="email2" autocomplete="on">
+										<input class="form-control" type="text" placeholder="Email" name="mail" autocomplete="on">
 									</div>
 									<div class="input-group">
-										<input class="form-control" type="password" placeholder="Password"  name="pwd2">
+										<input class="form-control" type="password" placeholder="Password" name="passworrd">
 									</div>
 									<div class="row kt-login__extra">
 										<div class="col">
@@ -201,67 +217,69 @@ License: You must have a valid license purchased only from themeforest(the above
 										</div>
 									</div>
 									<div class="kt-login__actions">
-										
+
 										<button type="submit" id="kt_login_sign_submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Sign In</button>
 									</div>
 								</form>
+
 							</div>
-							<div class="kt-login__signup">
-								<div class="kt-login__head">
-									<h3 class="kt-login__title">Sign Up</h3>
-									<div class="kt-login__desc">Enter your details to create your account:</div>
+						<div class="kt-login__signup">
+							<div class="kt-login__head">
+								<h3 class="kt-login__title">Sign Up</h3>
+								<div class="kt-login__desc">Enter your details to create your account:</div>
+							</div>
+							<form class="kt-form" method="POST" action="">
+								<div class="input-group">
+									<input class="form-control" type="text" placeholder="Name" id="nom" name="nom">
 								</div>
-								<form class="kt-form" method="POST" action="">
-								    <div class="input-group">
-										<input class="form-control" type="text" placeholder="Name" id="nom" name="nom">
-									</div>
-									<div class="input-group">
-										<input class="form-control" type="text" placeholder="Lastname" id="prenom" name="prenom">
-									</div>
-									<div class="input-group">
-										<input class="form-control" type="text" placeholder="Email" id="email" name="email" autocomplete="on">
-									</div>
-									<div class="input-group">
-										<input class="form-control" type="password" placeholder="Password" id="pwd" name="pwd">
-									</div>
-						
-									<div class="row kt-login__extra">
-										<div class="col kt-align-left">
-											<label class="kt-checkbox">
-												<input type="checkbox" name="agree">I Agree the <a href="../../LICENSE.txt" class="kt-link kt-login__link kt-font-bold">terms and conditions</a>.
-												<span></span>
-											</label>
-											<span class="form-text text-muted"></span>
-										</div>
-									</div>
-									<div class="kt-login__actions">
-										<button type ="submit" id="kt_login_signup_submit" class="btn btn-brand btn-elevate kt-login__btn-primary"><a href="index.php"></a>Sign Up</button>&nbsp;&nbsp;
-										<button id="kt_login_signup_cancel" class="btn btn-light btn-elevate kt-login__btn-secondary">Cancel</button>
-									</div>
-								</form>
-							</div>
-							<div class="kt-login__forgot">
-								<div class="kt-login__head">
-									<h3 class="kt-login__title">Forgotten Password ?</h3>
-									<div class="kt-login__desc">Enter your email to reset your password:</div>
+								<div class="input-group">
+									<input class="form-control" type="text" placeholder="Lastname" id="prenom" name="prenom">
 								</div>
-								<form class="kt-form" action="">
-									<div class="input-group">
-										<input class="form-control" type="text" placeholder="Email" name="email3" id="kt_email" autocomplete="off">
+								<div class="input-group">
+									<input class="form-control" type="text" placeholder="Email" id="email" name="email" autocomplete="on">
+								</div>
+								<div class="input-group">
+									<input class="form-control" type="password" placeholder="Password" id="pwd" name="pwd">
+								</div>
+
+								<div class="row kt-login__extra">
+									<div class="col kt-align-left">
+										<label class="kt-checkbox">
+											<input type="checkbox" name="agree">I Agree the <a href="../../LICENSE.txt" class="kt-link kt-login__link kt-font-bold">terms and conditions</a>.
+											<span></span>
+										</label>
+										<span class="form-text text-muted"></span>
 									</div>
-									<div class="kt-login__actions">
-										<button id="kt_login_forgot_submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Request</button>&nbsp;&nbsp;
-										<button id="kt_login_forgot_cancel" class="btn btn-light btn-elevate kt-login__btn-secondary">Cancel</button>
-									</div>
-								</form>
+								</div>
+								<div class="kt-login__actions">
+									<button type="submit" id="kt_login_signup_submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Sign Up</button>&nbsp;&nbsp;
+									<button id="kt_login_signup_cancel" class="btn btn-light btn-elevate kt-login__btn-secondary">Cancel</button>
+								</div>
+
+							</form>
+						</div>
+						<div class="kt-login__forgot">
+							<div class="kt-login__head">
+								<h3 class="kt-login__title">Forgotten Password ?</h3>
+								<div class="kt-login__desc">Enter your email to reset your password:</div>
 							</div>
-							<div class="kt-login__account">
-								<span class="kt-login__account-msg">
-									Don't have an account yet ?
-								</span>
-								&nbsp;&nbsp;
-								<a href="javascript:;" id="kt_login_signup" class="kt-login__account-link">Sign Up!</a>
-							</div>
+							<form class="kt-form" action="">
+								<div class="input-group">
+									<input class="form-control" type="text" placeholder="Email" name="email3" id="kt_email" autocomplete="off">
+								</div>
+								<div class="kt-login__actions">
+									<button id="kt_login_forgot_submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Request</button>&nbsp;&nbsp;
+									<button id="kt_login_forgot_cancel" class="btn btn-light btn-elevate kt-login__btn-secondary">Cancel</button>
+								</div>
+							</form>
+						</div>
+						<div class="kt-login__account">
+							<span class="kt-login__account-msg">
+								Don't have an account yet ?
+							</span>
+							&nbsp;&nbsp;
+							<a href="javascript:;" id="kt_login_signup" class="kt-login__account-link">Sign Up!</a>
+						</div>
 						</div>
 					</div>
 				</div>
@@ -340,7 +358,8 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script src="../assets/vendors/custom/components/vendors/bootstrap-markdown/init.js" type="text/javascript"></script>
 		<script src="../assets/vendors/general/bootstrap-notify/bootstrap-notify.min.js" type="text/javascript"></script>
 		<script src="../assets/vendors/custom/components/vendors/bootstrap-notify/init.js" type="text/javascript"></script>
-	    <!--this one--><script src="../assets/vendors/general/jquery-validation/dist/jquery.validate.js" type="text/javascript"></script>
+		<!--this one-->
+		<script src="../assets/vendors/general/jquery-validation/dist/jquery.validate.js" type="text/javascript"></script>
 		<script src="../assets/vendors/general/jquery-validation/dist/additional-methods.js" type="text/javascript"></script>
 		<script src="../assets/vendors/custom/components/vendors/jquery-validation/init.js" type="text/javascript"></script>
 		<script src="../assets/vendors/general/toastr/build/toastr.min.js" type="text/javascript"></script>
@@ -378,4 +397,5 @@ License: You must have a valid license purchased only from themeforest(the above
 	</body>
 
 	<!-- end::Body -->
-</html>
+
+	</html>
