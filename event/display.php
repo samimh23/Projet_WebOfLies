@@ -113,7 +113,9 @@ $events = $eventController->index();
                         <div class="row">
                             <h3><?php echo $event['name']?></h3>
                             <p><?php echo $event['description']?></p>
-                            <a href="display.php">MORE</a>
+                            <a href="../eventreservation/addReservation.php?id=<?php echo $event['id'] ?>">Reserver</a>
+                            <a href="../eventreservation/annulerReservation.php?id=<?php echo $event['id'] ?>">annuler</a>
+                            
                         </div>
                     </div>
                     <?php

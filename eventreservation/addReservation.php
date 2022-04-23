@@ -1,4 +1,16 @@
-<!DOCTYPE html>
+﻿<?php
+    include_once '../backoffice/eventReservation/Model/EventReservation.php';
+    include_once '../backoffice/eventReservation/Controller/EventReservationController.php';
+
+    $EventReservationController = new EventReservationController();
+	$id = $_GET['id'];
+	if(isset($_POST['event_reservation_lastname']) && isset($_POST['event_reservation_firstname']) && isset($_POST['event_reservation_email'])) {
+        $EventReservation = new EventReservation($_POST['event_reservation_lastname'],$_POST['event_reservation_firstname'],$_POST['event_reservation_email']);
+		$EventReservationController->addReservation($EventReservation,$id);
+		header('Location:../event/display.php');
+    }
+?>
+
 <!DOCTYPE html>
 <!--
 	Be by TEMPLATE STOCK
@@ -14,7 +26,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Be Free HTML5 Responsive Template | Template Stock</title>
-
+		 
     <!-- =============== Bootstrap Core CSS =============== -->
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css" type="text/css">
     <!-- =============== fonts awesome =============== -->
@@ -23,12 +35,10 @@
     <link rel="stylesheet" href="../assets/css/animate.min.css" type="text/css">
     <!-- =============== Custom CSS =============== -->
     <link rel="stylesheet" href="../assets/css/style.css" type="text/css">
-    <!-- =============== Owl Carousel Assets =============== -->
+    <!-- =============== Owl Carousel ../assets =============== -->
     <link href="../assets/owl-carousel/owl.carousel.css" rel="stylesheet">
     <link href="../assets/owl-carousel/owl.theme.css" rel="stylesheet">
-	
-	 <link rel="stylesheet" href="../assets/css/isotope-docs.css" media="screen">
-	  <link rel="stylesheet" href="../assets/css/baguetteBox.css">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -40,8 +50,8 @@
 <body>
     <!-- =============== Preloader =============== -->
     <div id="preloader">
-        <div id="loading">
-		<img width="256" height="32" src="../assets/img/loading-cylon-red.svg">	
+          <div id="loading">
+		<img width="256" height="32" src="../assets/img/loading-cylon-red.svg">
         </div>
     </div>
     <!-- =============== nav =============== -->
@@ -56,103 +66,80 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><img src="../assets/img/logo.png" alt="Logo">
-                    </a>
+
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-						<li>
-                            <a class="page-scroll" href="#home">ADD</a>
-                        </li>
-                        <!--<li>
-                            <a class="page-scroll" href="#about">Modify</a>
-                        </li>
                         <li>
-                            <a class="page-scroll" href="#Services">Display</a>
+                            <a class="page-scroll" href="#contact">Reservation</a>
                         </li>
-                        <li>
-                            <a class="page-scroll" href="#Gallery">Delete</a>
-                        </li>-->
-                        
                     </ul>
                 </div>
                 <!-- =============== navbar-collapse =============== -->
 
             </div>
         </div>
-            <form id="create-event" method="post">
-                <div class="form">
-                    <h2>Add Event</h2>
-                    <input id="idEvent" type="text" name="idEvent" placeholder="Enter Id Event">
-                    <br>
-                    <span id="errorId"></span>
-                    <input id="nameEvent" type="text" name="nameEvent" placeholder="Enter Event Name">
-                    <br>
-                    <span id="errorName"></span>
-                    <input id="dateEvent" type="date" name="dateEvent" placeholder="Enter Event Date">
-                    <br>
-                    <span id="errorDate"></span>
-                    <input id="lieuEvent" type="text" name="lieuEvent" placeholder="Enter Event Location">
-                    <br>
-                    <span id="errorLieu"></span>
-                    <input id="priceEvent" type="text" name="priceEvent" placeholder="Enter Event price">
-                    <br>
-                    <span id="errorPrice"></span>
-                    <button class="addevent" type="submit">Add</button>
-                </div>
-            </form>
-               
-        
         <!-- =============== container-fluid =============== -->
     </nav>
     <!-- =============== header =============== -->
-    <header id="home" class="header">
+    <header id="home" class="blog-header">
 		<!-- =============== container =============== -->
-        
+        <div class="container">
+            <div class="header-content row">
+				<h1>EVENT </h1>
+			</div>
+        </div>
 		<!-- =============== container end =============== -->
     </header>
-    <!-- =============== About =============== -->
-    <section id="about" class="">
-		<!-- =============== container =============== -->
-           
-		<!-- =============== container end =============== -->		
-    </section>
-	<section id="team" class="">
-		<!-- =============== container =============== -->
-        
-		<!-- =============== container end =============== -->		
-    </section>	
-	<!-- =============== Services =============== -->
-    <section id="Services" class="">
-		<!-- =============== container =============== -->
-           
-		<!-- =============== container end =============== -->		
-    </section>	
-	<!-- =============== for box =============== -->		
-	<!--<section class="for-box">
-	 
-	</section>-->
-	<!-- =============== Counter =============== -->
-    <section class="counter">
-		<!-- =============== container =============== -->
-           
-		<!-- =============== container end =============== -->		
-    </section>	
-    
-<!-- =============== Gallery =============== -->
-       
-		<!-- =============== container end =============== -->		
-    </section>	
+    <!-- =============== blog single =============== -->
 	<section id="contact">
 	<!-- =============== container =============== -->
-		
-		<!-- =============== container end =============== -->
+		<div class="container">
+			    <div class="row">
+                <div class="title">
+				<h2>Reservation</h2>
+				<p>Meet some of our lovely, passionate, positive people.</p>
+				</div>
+			</div>
+
+			<div class="row">
+
+				<div class="col-xs-12 col-sm-12 col-md-12 wow bounceIn animated" data-wow-delay=".1s">
+
+					<form  id="form-event" method="post">
+						<div class="ajax-hidden">
+							<div class="col-xs-12 col-sm-6 col-md-6 form-group wow fadeInUp animated">
+								<label for="c_name" class="sr-only">LastName</label>
+                                <input type="text" class="form-control" id="event-reservation-lastname" name="event_reservation_lastname" placeholder="Enter your Last Name here">
+                                <span class="form-text" id="lastname-eventreservation-error"></span>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 form-group wow fadeInUp animated">
+								<label for="c_name" class="sr-only">FirstName</label>
+                                <input type="text" class="form-control" id="event-reservation-firstname" name="event_reservation_firstname" placeholder="Enter your Last Name here">
+                                <span class="form-text" id="firstname-eventreservation-error"></span>
+                            </div>
+							<div data-wow-delay=".1s" class="col-xs-12 col-sm-6 col-md-6 form-group wow fadeInUp animated">
+								<label for="c_email" class="sr-only">Email</label>
+								<input type="email" placeholder="E-mail" name="event_reservation_email" class="form-control" id="event-reservation-email" pattern="^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$" placeholder="e.g. info@envato.com" required="">
+							</div>
+							<button data-wow-delay=".3s" class="btn btn-sm btn-block wow fadeInUp animated" type="submit">Submit</button>
+                            <button data-wow-delay=".3s" class="btn btn-sm btn-block wow fadeInUp animated" type="reset">Cancel</button>
+						</div>
+						<div class="ajax-response"></div>
+					</form>
+				</div>              
+			</div>
+		</div><!-- =============== container end =============== -->
 	</section>
+	
+    
+
+	
     <!-- Footer -->
-    <footer id="footer">
+    <footer id="footer" class="marg50">
 	<!-- =============== container =============== -->
     <div class="container">
 			    <div class="row">
@@ -184,27 +171,25 @@
 				</div>
 			</div>
     </div><!-- =============== container end =============== -->
-	</footer>    
-	<!-- =============== jQuery =============== -->
+	</footer>
+    <!-- =============== jQuery =============== -->
     <script src="../assets/js/jquery.js"></script>
-	 <script src="../assets/js/isotope-docs.min.js"></script>
     <!-- =============== Bootstrap Core JavaScript =============== -->
     <script src="../assets/js/bootstrap.min.js"></script>
     <!-- =============== Plugin JavaScript =============== -->
     <script src="../assets/js/jquery.easing.min.js"></script>
     <script src="../assets/js/jquery.fittext.js"></script>
-    <script src="../assets/js/wow.min.js"></script> 
+    <script src="../assets/js/wow.min.js"></script>
 	<!-- =============== owl carousel =============== -->
-    <script src="../assets/owl-carousel/owl.carousel.js"></script>  
+    <script src="../assets/owl-carousel/owl.carousel.js"></script>
 	<!-- Isotope does NOT require jQuery. But it does make things easier -->
 
 <script src="../assets/js/baguetteBox.js" async></script>
 <script src="../assets/js/plugins.js" async></script>
- 
+
     <!-- =============== Custom Theme JavaScript =============== -->
-    <script src="../assets/js/creative.js">	</script> 
+    <script src="../assets/js/creative.js">	</script>
 <script src="../assets/js/jquery.nicescroll.min.js"></script>
-<script src="ajout.js"></script>
 
 <script>
   $(document).ready(function() {
@@ -221,26 +206,6 @@
     $("#boxscroll4").niceScroll("#boxscroll4 .wrapper",{boxzoom:true});  // hw acceleration enabled when using wrapper
     
   });
-</script>
-<script>
-window.onload = function() {
-    if(typeof oldIE === 'undefined' && Object.keys)
-        hljs.initHighlighting();
-
-    baguetteBox.run('.baguetteBoxOne');
-    baguetteBox.run('.baguetteBoxTwo');
-    baguetteBox.run('.baguetteBoxThree', {
-        animation: 'fadeIn'
-    });
-    baguetteBox.run('.baguetteBoxFour', {
-        buttons: false
-    });
-    baguetteBox.run('.baguetteBoxFive', {
-        captions: function(element) {
-            return element.getElementsByTagName('img')[0].alt;
-        }
-    });
-};
 </script>
 </body>
 </html>
