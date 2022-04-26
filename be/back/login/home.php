@@ -1,3 +1,13 @@
+<?php session_start();?>
+<?php 
+if((isset($_SESSION['nom_client']))&&(isset($_SESSION['prenom_client']))&&(isset($_SESSION['email_client']))&&(isset($_SESSION['pwd_client'])))
+{
+	$nom=$_SESSION['nom_client'];
+	$prenom=$_SESSION['prenom_client'];
+	$email=$_SESSION['email_client'];
+	$pwd=$_SESSION['pwd_client'];
+}
+?>
 <!DOCTYPE html>
 <!--
 	Be by TEMPLATE STOCK
@@ -15,19 +25,19 @@
     <title>Be Free HTML5 Responsive Template | Template Stock</title>
 
     <!-- =============== Bootstrap Core CSS =============== -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" type="text/css">
     <!-- =============== fonts awesome =============== -->
-    <link rel="stylesheet" href="../assets/font/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/font/css/font-awesome.min.css" type="text/css">
     <!-- =============== Plugin CSS =============== -->
-    <link rel="stylesheet" href="../assets/css/animate.min.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/css/animate.min.css" type="text/css">
     <!-- =============== Custom CSS =============== -->
-    <link rel="stylesheet" href="../assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/css/style.css" type="text/css">
     <!-- =============== Owl Carousel Assets =============== -->
-    <link href="../assets/owl-carousel/owl.carousel.css" rel="stylesheet">
-    <link href="../assets/owl-carousel/owl.theme.css" rel="stylesheet">
+    <link href="../../assets/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="../../assets/owl-carousel/owl.theme.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="../assets/css/isotope-docs.css" media="screen">
-    <link rel="stylesheet" href="../assets/css/baguetteBox.css">
+    <link rel="stylesheet" href="../../assets/css/isotope-docs.css" media="screen">
+    <link rel="stylesheet" href="../../assets/css/baguetteBox.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -41,9 +51,10 @@
     <!-- =============== Preloader =============== -->
     <div id="preloader">
         <div id="loading">
-            <img width="256" height="32" src="../assets/img/loading-cylon-red.svg">
+            <img width="256" height="32" src="../../assets/img/loading-cylon-red.svg">
         </div>
     </div>
+	
     <!-- =============== nav =============== -->
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -56,18 +67,18 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <!--<a class="navbar-brand" href="#"><img src="../assets/img/logo.png" alt="Logo">-->
+                    <!--<a class="navbar-brand" href="#"><img src="../../assets/img/logo.png" alt="Logo">-->
                     </a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
-
+				<h1 style='color:blue' >Welcome  <?php echo $nom ?> </h1>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a class="page-scroll" href="../back/login/custom_user_login-v3.php">Login</a>
-                        </li>
+                       <!-- <li>
+                            <a class="page-scroll" href="../../back/login/custom_user_login-v3.php">Login</a>
+                        </li>-->
                         <!--<li>
                             <a class="page-scroll" href="#Services">Display</a>
                         </li>
@@ -136,7 +147,7 @@
 				   <p>We are Web Of Lies and with this project we aim to create an adequate transport website for renting cars and responding to customer requests thanks to precise and well-defined modules.</p>				 
                   </div>
                   <div class="col-xs-12 col-sm-12 col-md-6 wow fadeInRight animated" data-wow-delay=".5s">
-                     <img src="../assets/img/about-img.jpg"/>               
+                     <img src="../../assets/img/about-img.jpg"/>               
                   </div>     
             </div>
         </div>-->
@@ -151,7 +162,7 @@
 					<p>Meet some of our lovely, passionate, positive people.</p>
 				</div>
                 <div class="col-xs-12 col-sm-6 col-md-3 wow fadeInDown animated" data-wow-delay=".1s">
-                   	<div class="timg"><img src="../assets/img/mehdi.gif"/></div>
+                   	<div class="timg"><img src="../../assets/img/mehdi.gif"/></div>
 				    <div class="t-box">
 				   		<h3>MEHDI FATHALLAH</h3>
 						<span>Creative Director </span>
@@ -163,7 +174,7 @@
 				   	</div>
 				</div>
                 <div class="col-xs-12 col-sm-6 col-md-3 wow fadeInDown animated" data-wow-delay=".1s">
-                   	<div class="timg"><img src="../assets/img/nassim.jpg"/></div>
+                   	<div class="timg"><img src="../../assets/img/nassim.jpg"/></div>
 				    <div class="t-box">
 				   		<h3>NASSIM BEN ALI</h3>
 				   		<span>Creative Director </span>
@@ -175,7 +186,7 @@
 				   </div>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-3 wow fadeInUp animated" data-wow-delay=".2s">
-                    <div class="timg"><img src="../assets/img/ghaith.gif"/></div>
+                    <div class="timg"><img src="../../assets/img/ghaith.gif"/></div>
 				   	<div class="t-box">
 				   		<h3>GHAYTH SELMI</h3>
 				   		<span>Website & ui designer</span>
@@ -187,7 +198,7 @@
 				   	</div>				   
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-3 wow fadeInDown animated" data-wow-delay=".3s">
-					<div class="timg"><img src="../assets/img/sami.jpg"/></div>
+					<div class="timg"><img src="../../assets/img/sami.jpg"/></div>
 				   	<div class="t-box">
 				   		<h3>SAMI MAHJOUB</h3>
 				   		<span>Senior Developer</span>
@@ -201,7 +212,7 @@
             </div>
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-3 wow fadeInUp animated" data-wow-delay=".4s">
-                    <div class="timg"><img src="../assets/img/baha.jpg"/></div>
+                    <div class="timg"><img src="../../assets/img/baha.jpg"/></div>
 				    <div class="t-box">
 				   		<h3>BAHA ADOUANIA</h3>
 				   		<span>Content Writer</span>
@@ -222,7 +233,7 @@
         <!--<div class="container">            
             <div class="row">
 			 <div class="col-xs-12 col-sm-12 col-md-6 wow fadeInLeft animated" data-wow-delay=".5s">
-                     <img src="../assets/img/services-img.jpg" class="img-left"/>               
+                     <img src="../../assets/img/services-img.jpg" class="img-left"/>               
                   </div>     
                 <div class="col-xs-12 col-sm-12 col-md-6 wow fadeInRight animated" data-wow-delay=".5s">
                    <h2>Services</h2>
@@ -375,8 +386,8 @@ nullam rhoncus tortor at dignissim vehicula.</p>
 
   <div class="grid baguetteBoxThree gallery">
       <div class="element-item transition webdesign " data-category="post-transition">
-	  <a href="../assets/img/gallery/emp-1.jpg">	 
-	  <img src="../assets/img/gallery/emp-1.jpg"/>      
+	  <a href="../../assets/img/gallery/emp-1.jpg">	 
+	  <img src="../../assets/img/gallery/emp-1.jpg"/>      
 		<div class="hover-img"> 
 		<h2>Website Design</h2>
 		<i class="fa fa-camera camera"></i>
@@ -384,8 +395,8 @@ nullam rhoncus tortor at dignissim vehicula.</p>
 	  </a>
       </div>      
       <div class="element-item post-transition ecommerce " data-category="post-transition">
-	  <a href="../assets/img/gallery/emp-2.jpg">	 
-        <img src="../assets/img/gallery/emp-2.jpg"/>    
+	  <a href="../../assets/img/gallery/emp-2.jpg">	 
+        <img src="../../assets/img/gallery/emp-2.jpg"/>    
 		<div class="hover-img"> 
 		<h2>E-commerce</h2>
 		<i class="fa fa-camera camera"></i>
@@ -393,8 +404,8 @@ nullam rhoncus tortor at dignissim vehicula.</p>
 	  </a>
       </div>
       <div class="element-item post-transition webdesign " data-category="post-transition">
-	  <a href="../assets/img/gallery/emp-3.jpg">	 
-		<img src="../assets/img/gallery/emp-3.jpg"/>       
+	  <a href="../../assets/img/gallery/emp-3.jpg">	 
+		<img src="../../assets/img/gallery/emp-3.jpg"/>       
 		<div class="hover-img"> 
 		<h2>Website Design</h2>
 		<i class="fa fa-camera camera"></i>
@@ -402,8 +413,8 @@ nullam rhoncus tortor at dignissim vehicula.</p>
 		</a>
       </div>
 	 <div class="element-item transition ecommerce " data-category="post-transition">
-	   <a href="../assets/img/gallery/emp-4.jpg">	 
-	    <img src="../assets/img/gallery/emp-4.jpg"/>       
+	   <a href="../../assets/img/gallery/emp-4.jpg">	 
+	    <img src="../../assets/img/gallery/emp-4.jpg"/>       
 		<div class="hover-img"> 
 		<h2>E-commerce</h2>
 		<i class="fa fa-camera camera"></i>
@@ -411,8 +422,8 @@ nullam rhoncus tortor at dignissim vehicula.</p>
 		</a>		
       </div>      
       <div class="element-item post-transition logo " data-category="post-transition">
-         <a href="../assets/img/gallery/emp-5.jpg">	 
-	    <img src="../assets/img/gallery/emp-5.jpg"/>       
+         <a href="../../assets/img/gallery/emp-5.jpg">	 
+	    <img src="../../assets/img/gallery/emp-5.jpg"/>       
 		<div class="hover-img"> 
 		<h2>Logo</h2>
 		<i class="fa fa-camera camera"></i>
@@ -420,8 +431,8 @@ nullam rhoncus tortor at dignissim vehicula.</p>
 		</a>
       </div>
       <div class="element-item post-transition cms " data-category="post-transition">
-		 <a href="../assets/img/gallery/emp-6.jpg">	 
-	    <img src="../assets/img/gallery/emp-6.jpg"/>       
+		 <a href="../../assets/img/gallery/emp-6.jpg">	 
+	    <img src="../../assets/img/gallery/emp-6.jpg"/>       
 		<div class="hover-img"> 
 		<h2>CMS</h2>
 		<i class="fa fa-camera camera"></i>
@@ -429,8 +440,8 @@ nullam rhoncus tortor at dignissim vehicula.</p>
 		</a>
       </div>
 	  <div class="element-item post-transition logo " data-category="post-transition">
-         <a href="../assets/img/gallery/emp-7.jpg">	 
-	    <img src="../assets/img/gallery/emp-7.jpg"/>       
+         <a href="../../assets/img/gallery/emp-7.jpg">	 
+	    <img src="../../assets/img/gallery/emp-7.jpg"/>       
 		<div class="hover-img"> 
 		<h2>Logo</h2>
 		<i class="fa fa-camera camera"></i>
@@ -438,8 +449,8 @@ nullam rhoncus tortor at dignissim vehicula.</p>
 		</a>
       </div>
 	  <div class="element-item transition cms " data-category="post-transition">
-	   <a href="../assets/img/gallery/emp-8.jpg">	 
-	    <img src="../assets/img/gallery/emp-8.jpg"/>       
+	   <a href="../../assets/img/gallery/emp-8.jpg">	 
+	    <img src="../../assets/img/gallery/emp-8.jpg"/>       
 		<div class="hover-img"> 
 		<h2>CMS</h2>
 		<i class="fa fa-camera camera"></i>
@@ -447,8 +458,8 @@ nullam rhoncus tortor at dignissim vehicula.</p>
 		</a>
       </div>      
       <div class="element-item post-transition ecommerce " data-category="post-transition">
-         <a href="../assets/img/gallery/emp-9.jpg">	 
-	    <img src="../assets/img/gallery/emp-9.jpg"/>       
+         <a href="../../assets/img/gallery/emp-9.jpg">	 
+	    <img src="../../assets/img/gallery/emp-9.jpg"/>       
 		<div class="hover-img"> 
 		<h2>E-commerce</h2>
 		<i class="fa fa-camera camera"></i>
@@ -456,8 +467,8 @@ nullam rhoncus tortor at dignissim vehicula.</p>
 		</a>
       </div>
       <div class="element-item post-transition webdesign " data-category="post-transition">
-		 <a href="../assets/img/gallery/emp-10.jpg">	 
-	    <img src="../assets/img/gallery/emp-10.jpg"/>       
+		 <a href="../../assets/img/gallery/emp-10.jpg">	 
+	    <img src="../../assets/img/gallery/emp-10.jpg"/>       
 		<div class="hover-img"> 
 		<h2>Web Design</h2>
 		<i class="fa fa-camera camera"></i>
@@ -465,8 +476,8 @@ nullam rhoncus tortor at dignissim vehicula.</p>
 		</a>          
       </div>
 	  <div class="element-item post-transition logo " data-category="post-transition">
-         <a href="../assets/img/gallery/emp-11.jpg">	 
-	    <img src="../assets/img/gallery/emp-11.jpg"/>       
+         <a href="../../assets/img/gallery/emp-11.jpg">	 
+	    <img src="../../assets/img/gallery/emp-11.jpg"/>       
 		<div class="hover-img"> 
 		<h2>Logo</h2>
 		<i class="fa fa-camera camera"></i>
@@ -474,8 +485,8 @@ nullam rhoncus tortor at dignissim vehicula.</p>
 		</a>
       </div>
 	  <div class="element-item transition cms " data-category="post-transition">
-	   <a href="../assets/img/gallery/emp-12.jpg">	 
-	    <img src="../assets/img/gallery/emp-12.jpg"/>       
+	   <a href="../../assets/img/gallery/emp-12.jpg">	 
+	    <img src="../../assets/img/gallery/emp-12.jpg"/>       
 		<div class="hover-img"> 
 		<h2>CMS</h2>
 		<i class="fa fa-camera camera"></i>
@@ -499,7 +510,7 @@ nullam rhoncus tortor at dignissim vehicula.</p>
 				</div>
                  <div class="col-xs-12 col-sm-4 col-md-4 wow fadeInUp animated" data-wow-delay=".1s">
                       <div class="blog-img">
-						<img src="../assets/img/blog1.JPG"/>
+						<img src="../../assets/img/blog1.JPG"/>
 					  </div>
 					  <div class="row">
 					  <div class="data">30</div>
@@ -513,7 +524,7 @@ nullam rhoncus tortor at dignissim vehicula.</p>
                   </div>        
 				 <div class="col-xs-12 col-sm-4 col-md-4 wow bounceIn animated" data-wow-delay=".4s">
                       <div class="blog-img">
-						<img src="../assets/img/blog2.JPG"/>
+						<img src="../../assets/img/blog2.JPG"/>
 					  </div>
 					  <div class="row">
 					  <div class="data">30</div>
@@ -527,7 +538,7 @@ nullam rhoncus tortor at dignissim vehicula.</p>
                   </div>        
 				 <div class="col-xs-12 col-sm-4 col-md-4 wow fadeInDown animated" data-wow-delay=".3s">
                       <div class="blog-img">
-						<img src="../assets/img/blog3.JPG"/>
+						<img src="../../assets/img/blog3.JPG"/>
 					  </div>
 					  <div class="row">
 					  <div class="data">30</div>
@@ -618,25 +629,25 @@ nullam rhoncus tortor at dignissim vehicula.</p>
         <!-- =============== container end =============== -->
     </footer>
     <!-- =============== jQuery =============== -->
-    <script src="../assets/js/jquery.js"></script>
-    <script src="../assets/js/isotope-docs.min.js"></script>
+    <script src="../../assets/js/jquery.js"></script>
+    <script src="../../assets/js/isotope-docs.min.js"></script>
     <!-- =============== Bootstrap Core JavaScript =============== -->
-    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/bootstrap.min.js"></script>
     <!-- =============== Plugin JavaScript =============== -->
-    <script src="../assets/js/jquery.easing.min.js"></script>
-    <script src="../assets/js/jquery.fittext.js"></script>
-    <script src="../assets/js/wow.min.js"></script>
+    <script src="../../assets/js/jquery.easing.min.js"></script>
+    <script src="../../assets/js/jquery.fittext.js"></script>
+    <script src="../../assets/js/wow.min.js"></script>
     <!-- =============== owl carousel =============== -->
-    <script src="../assets/owl-carousel/owl.carousel.js"></script>
+    <script src="../../assets/owl-carousel/owl.carousel.js"></script>
     <!-- Isotope does NOT require jQuery. But it does make things easier -->
 
-    <script src="../assets/js/baguetteBox.js" async></script>
-    <script src="../assets/js/plugins.js" async></script>
+    <script src="../../assets/js/baguetteBox.js" async></script>
+    <script src="../../assets/js/plugins.js" async></script>
 
     <!-- =============== Custom Theme JavaScript =============== -->
-    <script src="../assets/js/creative.js">
+    <script src="../../assets/js/creative.js">
     </script>
-    <script src="../assets/js/jquery.nicescroll.min.js"></script>
+    <script src="../../assets/js/jquery.nicescroll.min.js"></script>
 
     <script>
         $(document).ready(function() {

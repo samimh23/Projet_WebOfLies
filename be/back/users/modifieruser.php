@@ -14,19 +14,19 @@
         isset($_POST["prenom"]) &&
 		isset($_POST["id"]) && 
         isset($_POST["email"]) && 
-        isset($_POST["password"])
+        isset($_POST["pwd"])
     ) {
         if (
 			!empty($_POST['nom']) &&
             !empty($_POST["prenom"]) && 
 			!empty($_POST["id"]) && 
             !empty($_POST["email"]) && 
-            !empty($_POST["password"])
+            !empty($_POST["pwd"])
         ) {
             $utilisateur = new utilisateur(
 				$_POST['nom'],
                 $_POST['prenom'], 
-				$_POST['password'],
+				$_POST['pwd'],
                 $_POST['email'],
                 $_POST['id']
             );

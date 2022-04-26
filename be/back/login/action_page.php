@@ -6,17 +6,17 @@ include_once '../models/utilisateurs.php';
 
 // create an instance of the controller
 /*$utilisateurC = new utilisateurc();
-    if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['pwd'])&& isset($_POST['rpwd'])) {
+    if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['password'])&& isset($_POST['rpwd'])) {
         
-        $utilisateur = new utilisateur($_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['pwd'],$_POST['rpwd']);
+        $utilisateur = new utilisateur($_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['password'],$_POST['rpwd']);
         $utilisateurC->ajouterutilisateur($utilisateur);}
         //header('Location:index.php');*/
 
-$utilisateurC = new utilisateurc();
+$utilisateursC = new utilisateurc();
 if (isset($_POST['lastname']) && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['pwd'])) {
 
     $utilisateur = new utilisateur($_POST['lastname'], $_POST['name'], $_POST['email'], $_POST['pwd']);
-    $utilisateurC->modifierutilisateur($utilisateur, $_POST['email']);
+    $utilisateursC->modifierutilisateur($utilisateur, $_POST['email']);
 }
 ?>
 <!DOCTYPE html>
@@ -27,7 +27,7 @@ if (isset($_POST['lastname']) && isset($_POST['name']) && isset($_POST['email'])
 </head>
 
 <body>
-    <form action="action_page.php" method="post">
+    <form action="action_page.php" method="POST">
         <div class="container">
             <label for="uname"><b>LastName</b></label>
             <input type="text" placeholder="Enter LastName" name="lastname" required>
@@ -35,7 +35,7 @@ if (isset($_POST['lastname']) && isset($_POST['name']) && isset($_POST['email'])
             <input type="text" placeholder="Enter Name" name="name" required>
             <label for="email"><b>Email</b></label>
             <input type="email" placeholder="Enter email" name="email" required>
-            <label for="pwd"><b>Password</b></label>
+            <label for="password"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="pwd" required>
             <button type="submit">Submit</button>
 

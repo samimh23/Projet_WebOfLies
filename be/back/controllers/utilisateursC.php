@@ -15,7 +15,8 @@ class utilisateurc{
     
 }
 function ajouterutilisateur($utilisateur){
-    $sql="INSERT INTO user (nom, prenom, email, pwd) VALUES (:nom,:prenom,:email,:pwd)";
+    $code = rand(0, 255);
+    $sql="INSERT INTO user (nom, prenom, email, pwd, code) VALUES (:nom,:prenom,:email,:pwd,$code)";
     $db = config::getConnexion();
     try{
         $query = $db->prepare($sql);
@@ -73,7 +74,10 @@ function modifierutilisateur($utilisateur, $email){
             'pwd' => $utilisateur->getPassword(),
             'email' => $email  
         ]);
-        echo $query->rowCount() . " records UPDATED successfully <br>";
+        echo $query->rowCount() . " records UPDATED successfully <br>";?>
+        <script>
+            alert('updated successfully');</script>
+            <?php
     } catch (PDOException $e) {
         $e->getMessage();
     }

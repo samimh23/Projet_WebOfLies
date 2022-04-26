@@ -1,4 +1,5 @@
 <?php
+// session_start();
 	require_once './../controllers/config.php';
 	include_once '../controllers/utilisateursC.php';
 	//include_once '../models/utilisateurs.php';
@@ -275,7 +276,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="0px,0px">
 									<div class="kt-header__topbar-user">
 										<span class="kt-header__topbar-welcome kt-hidden-mobile">Hi,</span>
-										<span class="kt-header__topbar-username kt-hidden-mobile">Sean</span>
+										<span class="kt-header__topbar-username kt-hidden-mobile">Admin</span>
 										<img class="kt-hidden" alt="Pic" src="../assets/media/users/300_25.jpg" />
 
 										<!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
@@ -293,7 +294,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">S</span>
 										</div>
 										<div class="kt-user-card__name">
-											Sean Stone
+											Admin
 										</div>
 										<div class="kt-user-card__badge">
 											<span class="btn btn-success btn-sm btn-bold btn-font-md">23 messages</span>
@@ -380,7 +381,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div class="kt-subheader   kt-grid__item" id="kt_subheader">
 							<div class="kt-subheader__main">
 								<h3 class="kt-subheader__title">
-									Events </h3>
+									Back </h3>
 								<span class="kt-subheader__separator kt-hidden"></span>
 							</div>
 							<div class="kt-subheader__toolbar">
@@ -405,7 +406,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<i class="kt-font-brand flaticon2-line-chart"></i>
 										</span>
 										<h3 class="kt-portlet__head-title">
-											Events
+											Accounts
 										</h3>
 									</div>
 								</div>

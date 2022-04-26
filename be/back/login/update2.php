@@ -1,10 +1,14 @@
 <?php 
-//  session_start();
+    session_start();?>
+  <?php
+//   include_once 'mail_send.php';
  require_once '../controllers/config.php';
 include_once '../controllers/utilisateursC.php';
  include_once '../models/utilisateurs.php';
 //require '../config.php';
-
+$utilisateur = null;
+$utilisateurc = new utilisateurc;
+$listeutilisateurs = $utilisateurc->recupererutilisateur();
 // create an instance of the controller
 /*$utilisateurC = new utilisateurc();
 if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['pwd'])&& isset($_POST['rpwd'])) {
@@ -12,12 +16,25 @@ if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && 
 	$utilisateur = new utilisateur($_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['pwd'],$_POST['rpwd']);
 	$utilisateurC->ajouterutilisateur($utilisateur);}
 	//header('Location:index.php');*/
-	
+    if(isset($_SESSION['email']))
+    {
+        $email=$_SESSION['email'];
+    }
     $utilisateurC = new utilisateurc();
-    if(isset($_POST['lastname']) && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['pwd'])) {
+    if(isset($_POST['pwd'])) 
+    {  
+        foreach($listeutilisateurs as $utilisateur)
+        {
+            if($utilisateur['email']==$email)
+            {
+                $lastname=$utilisateur['nom'];
+                $name=$utilisateur['prenom'];
+            }
+        }
 	
-        $utilisateur = new utilisateur($_POST['lastname'],$_POST['name'],$_POST['email'],$_POST['pwd']);
-        $utilisateurC->modifierutilisateur($utilisateur,$_POST['email']);}
+        $utilisateur1 = new utilisateur($lastname,$name,$email,$_POST['pwd']);
+        $utilisateurC->modifierutilisateur($utilisateur1,$email);
+    }
     
 ?>
 										
@@ -132,21 +149,12 @@ License: You must have a valid license purchased only from themeforest(the above
 							
 							<div class="kt-login__signup">
 								<div class="kt-login__head">
-									<h3 class="kt-login__title">Modify</h3>
-									<div class="kt-login__desc">Enter your details to change your account details:</div>
+									<h3 class="kt-login__title">Change you Password!</h3>
+									<div class="kt-login__desc">Enter your details to reset your password:</div>
 								</div>
 								<form class="kt-form" method="POST" action="">
-								    <div class="input-group">
-										<input class="form-control" type="text" placeholder="Name"  name="lastname">
-									</div>
 									<div class="input-group">
-										<input class="form-control" type="text" placeholder="Lastname"  name="name">
-									</div>
-									<div class="input-group">
-										<input class="form-control" type="text" placeholder="Email"  name="email" autocomplete="on">
-									</div>
-									<div class="input-group">
-										<input class="form-control" type="password" placeholder="Password"  name="pwd">
+										<input class="form-control" type="password" placeholder="New Password"  name="pwd">
 									</div>
 						
 									<div class="kt-login__actions">
