@@ -33,16 +33,16 @@ if (
 			}
 		}
 		if ($k == 0) {
-			$utilisateur = new utilisateur(
-				// $_POST['id'],
-				$_POST['nom'],
-				$_POST['prenom'],
-				$_POST['email'],
-				// password_hash($_POST['pwd'],PASSWORD_DEFAULT)
-				$_POST['pwd'],
-			);
-			$utilisateurc->ajouterutilisateur($utilisateur);
-			// header('location: index.php?status=success');
+
+			// $_POST['id'],
+			$_SESSION['nom_verif'] = $_POST['nom'];
+			$_SESSION['prenom_verif'] = $_POST['prenom'];
+			$_SESSION['email_verif'] = $_POST['email'];
+			// password_hash($_POST['pwd'],PASSWORD_DEFAULT)
+			$_SESSION['pwd_verif'] = $_POST['pwd'];
+			// $_SESSION['utilisateur_verif'] = $utilisateur;
+			// $utilisateurc->ajouterutilisateur($utilisateur);
+			header('location: mail_verification.php');
 		}
 	} else
 		$error = "Missing information";
@@ -68,13 +68,11 @@ if (
 				if (($_POST['email2'] == $adress) && ($_POST['password2'] == $pass)) {
 					$_SESSION['auth'] = true;
 					header('Location: index.php');
-				}
-				else
-				{
-					$_SESSION['nom_client']=$utilisateur['nom'];
-					$_SESSION['prenom_client']=$utilisateur['prenom'];
-					$_SESSION['email_client']=$_POST['email2'];
-					$_SESSION['pwd_client']=$_POST['password2'];
+				} else {
+					$_SESSION['nom_client'] = $utilisateur['nom'];
+					$_SESSION['prenom_client'] = $utilisateur['prenom'];
+					$_SESSION['email_client'] = $_POST['email2'];
+					$_SESSION['pwd_client'] = $_POST['password2'];
 					header('Location: home.php');
 				}
 			}
@@ -250,7 +248,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									</div>
 								</div>
 								<div class="kt-login__actions">
-									<button type="submit" id="kt_login_signup_submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Sign Up</button>&nbsp;&nbsp;
+									<button type="submit" id="signup ama KENET HAJA OKHRA" class="btn btn-brand btn-elevate kt-login__btn-primary">Sign Up</button>&nbsp;&nbsp;
 									<button id="kt_login_signup_cancel" class="btn btn-light btn-elevate kt-login__btn-secondary">Cancel</button>
 								</div>
 
@@ -309,7 +307,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	</script>
 
 	<!-- end::Global Config -->
-		<script> </script>
+	<script> </script>
 	<!--begin:: Global Mandatory Vendors -->
 	<script src="../assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
 	<script src="../assets/vendors/general/popper.js/dist/umd/popper.js" type="text/javascript"></script>

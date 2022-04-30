@@ -18,7 +18,7 @@ if(isset($_POST['codee']))
 			if ($utilisateur['code'] == $_POST['codee']) 
             {
                 ?>
-                <script>alert("YOU HAVE ENTER THE CORRECT CODE");
+                <script>alert("YOU HAVE ENTERED THE CORRECT CODE");
             </script>
                 <?php header('Location: update2.php');
             }

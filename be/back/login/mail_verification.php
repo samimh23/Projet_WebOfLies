@@ -12,29 +12,25 @@ include_once '../controllers/utilisateursC.php';
 require_once "includeclasses/PHPMailer.php";
 require_once "includeclasses/SMTP.php";
 require_once "includeclasses/Exception.php";
-// require "includeclasses/OAuthTokenProvider.php";
-// require "includeclasses/OAuth.php";
+require_once "includeclasses/OAuthTokenProvider.php";
+//require "src/OAuth.php";
 // require "src/OAuthTokenProvider.php";
 //define name spaces 
 use PHPMailer\PHPMailer\PHPMailer;
 // use PHPMailer\PHPMailer\Exception;
-if(isset($_SESSION['code']))
-{
-    $code=$_SESSION['code'];
-}
-else
-die('$'."_SESSION['code'] isn't set because you had never been at file one");
-use PHPmailer\PHPmailer\SMTP;
-use PHPmailer\PHPmailer\Exception;
-$mail = new PHPMailer();
+$code_verification = rand(0, 1000);
+$_SESSION['code_verification']=$code_verification;
+// use PHPmailer\PHPmailer\SMTP;
+//use PHPmailer\PHPmailer\Exception;
+$mail = new PHPMailer(true);
 $mail->IsSMTP(); 
-$mail->SMTPDebug = 2; 
+$mail->SMTPDebug = 1; 
     $mail->SMTPAuth = true; 
     $mail->SMTPSecure="ssl"; 
     $mail->Host = "smtp.gmail.com";
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;   
+    // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;   
     $mail->Port ="465"; 
-    // $mail->IsHTML(true);
+    $mail->IsHTML(true);
     //Username to use for SMTP authentication
     $mail->Username = "2a21group5@gmail.com";
     $mail->Password = "123azerty*";
@@ -48,7 +44,7 @@ $mail->SMTPDebug = 2;
     $mail->Subject="Password reset code";
     //Read an HTML message body from an external file, convert referenced images to embedded,
     //convert HTML into a basic plain-text alternative body
-    $mail->msgHTML(" Your verification code is: $code");   
+    $mail->msgHTML(" Your Email Verification code is: $code_verification");   
     //Replace the plain text body with one created manually
     $mail->AltBody = 'This is a plain-text message body';
 
@@ -57,7 +53,7 @@ $mail->SMTPDebug = 2;
         echo "Mailer Error:"  . $mail->ErrorInfo;
     } else {
         echo "Message sent!";
-        header('Location: reset-password.php');
+        header('Location: mail_verification_two.php');
     }
 
 
