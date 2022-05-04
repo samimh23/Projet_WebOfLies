@@ -8,7 +8,7 @@ class myPDF extends FPDF{
         $this->SetDrawColor(0,80,180);
         $this->SetFillColor(230,230,0);
         $this->SetTextColor(220,50,50);
-        $this->Cell(200,5,'Liste des Client',0,0,'C');
+        $this->Cell(200,5,'Liste des Client Reserver',0,0,'C');
         $this->Ln(10);
     }
     function Footer()

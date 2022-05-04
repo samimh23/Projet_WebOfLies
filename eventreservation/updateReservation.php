@@ -1,60 +1,13 @@
 <?php
 	include_once '../backoffice/eventReservation/Model/EventReservation.php';
-    include_once '../backoffice/eventReservation/Controller/EventReservationController.php';
-    include_once '../backoffice/event/Controller/config.php';
+	include_once '../backoffice/eventReservation/Controller/EventReservationController.php';
 
-    require "includeclasses/PHPmailer.php";
-    require "includeclasses/SMTP.php";
-    require "includeclasses/Exception.php";
-
-    //define name spaces 
-    use PHPmailer\PHPmailer\PHPmailer;
-    //use PHPmailer\PHPmailer\SMTP;
-    //use PHPmailer\PHPmailer\Exception;
-    $EventReservationController = new EventReservationController();
-    $id = $_GET['id'];
-    if(isset($_POST['event_reservation_email'])) {
-        //$EventReservation = new EventReservation($_POST['event_reservation_email']);
-	$EventReservationController->supprimerEvent($_POST['event_reservation_email'],$id);
-    $mail = new PHPMailer();
-$mail->IsSMTP(); 
-    $mail->SMTPDebug = 1; 
-    $mail->SMTPAuth = true; 
-    $mail->SMTPSecure="ssl"; 
-    $mail->Host = "smtp.gmail.com";
-
-    $mail->Port ="465"; 
-    $mail->IsHTML(true);
-    //Username to use for SMTP authentication
-    $mail->Username = "2a21group5@gmail.com";
-    $mail->Password = "123azerty*";
-    //Set who the message is to be sent from
-    $mail->setFrom('2a21group5@gmail.com', ''); //! moch lezem 
-    //Set an alternative reply-to address
-    $mail->addReplyTo('benalinassim412@gmail.com', 'reply services'); //! lchkoun ymchi mail ki ya3mel reply l user
-    //Set who the message is to be sent to
-    $mail->addAddress($_POST['event_reservation_email'], '');
-    //Set the subject line
-    $mail->Subject="email proto test";
-    //Read an HTML message body from an external file, convert referenced images to embedded,
-    //convert HTML into a basic plain-text alternative body
-    $mail->msgHTML("Your reservation has been canceled");
-    
-    //Replace the plain text body with one created manually
-    $mail->AltBody = 'This is a plain-text message body';
-
-    //send the message, check for errors
-    if (!$mail->send()) {
-        echo "Mailer Error:"  . $mail->ErrorInfo;
-    } else {
-        echo "Message sent!";
-    }
-
-
-
-    $mail->smtpClose();
-
-	header('Location:../event/display.php');
+	$EventReservationController = new EventReservationController();
+	$id = $_GET['id'];
+	if(isset($_POST['event_reservation_lastname']) && isset($_POST['event_reservation_firstname']) && isset($_POST['event_reservation_email'])) {
+        $EventReservation = new EventReservation($_POST['event_reservation_lastname'],$_POST['event_reservation_firstname'],$_POST['event_reservation_email']);
+		$EventReservationController->updateEventreservation($EventReservation,$id);
+		header('Location:../event/display.php');
     }
 ?>
 <!DOCTYPE html>
@@ -119,13 +72,8 @@ $mail->IsSMTP();
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-
-
-                        <li class="active">
-                            <a class="page-scroll" href="#blog">Display Event</a>
-                        </li>
                         <li>
-                            <a class="page-scroll" href="#contact">Contact</a>
+                            <a class="page-scroll" href="#contact">Reservation</a>
                         </li>
                     </ul>
                 </div>
@@ -162,10 +110,21 @@ $mail->IsSMTP();
 
 					<form  id="form-event" method="post">
 						<div class="ajax-hidden">
+							<div class="col-xs-12 col-sm-6 col-md-6 form-group wow fadeInUp animated">
+								<label for="c_name" class="sr-only">LastName</label>
+                                <input type="text" class="form-control" id="event-reservation-lastname" name="event_reservation_lastname" placeholder="Enter your Last Name here">
+                                <span class="form-text" id="lastname-eventreservation-error"></span>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 form-group wow fadeInUp animated">
+								<label for="c_name" class="sr-only">FirstName</label>
+                                <input type="text" class="form-control" id="event-reservation-firstname" name="event_reservation_firstname" placeholder="Enter your First Name here">
+                                <span class="form-text" id="firstname-eventreservation-error"></span>
+                            </div>
 							<div data-wow-delay=".1s" class="col-xs-12 col-sm-6 col-md-6 form-group wow fadeInUp animated">
 								<label for="c_email" class="sr-only">Email</label>
-								<input type="email" placeholder="E-mail" name="event_reservation_email" class="form-control" id="event-reservation-email" pattern="^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$" placeholder="e.g. info@envato.com" required="">
-							</div>
+								<input type="email" placeholder="E-mail" name="event_reservation_email" class="form-control" id="event-reservation-email" pattern="^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$" placeholder="e.g. info@envato.com">
+                                <span class="form-text" id="email-eventreservation-error"></span>
+                            </div>
 							<button data-wow-delay=".3s" class="btn btn-sm btn-block wow fadeInUp animated" type="submit">Submit</button>
                             <button data-wow-delay=".3s" class="btn btn-sm btn-block wow fadeInUp animated" type="reset">Cancel</button>
 						</div>
@@ -215,6 +174,7 @@ $mail->IsSMTP();
 	</footer>
     <!-- =============== jQuery =============== -->
     <script src="../assets/js/jquery.js"></script>
+    <script src="addReservationjs.js" type="text/javascript"></script>
     <!-- =============== Bootstrap Core JavaScript =============== -->
     <script src="../assets/js/bootstrap.min.js"></script>
     <!-- =============== Plugin JavaScript =============== -->
@@ -232,6 +192,7 @@ $mail->IsSMTP();
     <script src="../assets/js/creative.js">	</script>
 <script src="../assets/js/jquery.nicescroll.min.js"></script>
 
+
 <script>
   $(document).ready(function() {
   
@@ -248,6 +209,7 @@ $mail->IsSMTP();
     
   });
 </script>
+<script src="addReservationjs.js" type="text/javascript"></script>
 </body>
 </html>
 

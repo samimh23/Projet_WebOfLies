@@ -32,50 +32,56 @@
 			} 
         }*/
 
-        public function addReservation(EventReservation $eventReservation,$id)
+        public function addReservation(EventReservation $eventReservation,$id,$email)
         {
+			$selectsql="SELECT * FROM eventreservation WHERE email=:email AND id_event=:id_event";
             $sql="INSERT INTO eventreservation (id_event,name, prenom, email) VALUES (:id,:name,:prenom,:email)";
 			$db = database::getConnexiondb();
-			try{
-				$query = $db->prepare($sql);
-				$query->execute([
-					'id' => $id,
-					'name' => $eventReservation->getLastname(),
-					'prenom' => $eventReservation->getFirstname(),
-					'email' => $eventReservation->getEmail()
-				]);			
+			$query = $db->prepare($selectsql);
+            $query->execute([
+                'email' => $email,
+				'id_event' => $id
+            ]);
+			$array= $query->fetch();
+			if($array != false)
+			{
+				return 'Deja reserve';
 			}
-			catch (Exception $e){
-				echo 'Erreur: '.$e->getMessage();
+			else
+			{
+				try{
+					$query = $db->prepare($sql);
+					$query->execute([
+						'id' => $id,
+						'name' => $eventReservation->getLastname(),
+						'prenom' => $eventReservation->getFirstname(),
+						'email' => $email
+					]);			
+					return "reservé";
+				}
+				catch (Exception $e){
+					echo 'Erreur: '.$e->getMessage();
+				}
 			}	
         }
-		/*public function updateEvent(Event $event, $id,$picture)
+		public function updateEventreservation(EventReservation $eventReservation, $id)
 		{
-            $targetDir = dirname(__DIR__).'\uploads\\';
-            $fileName = uniqid() . '-' . basename($picture["name"]);
-            $targetFilePath = $targetDir . $fileName;
-            if(move_uploaded_file($picture["tmp_name"], $targetFilePath)){
-                $event->setPicture($fileName);
-            }
-			$sql="UPDATE event SET name=:name, date=:date, location=:location, price=:price , description=:description, picture=:picture WHERE id=:id";
-			$db = db::getConnexion();
+			$sql="UPDATE eventreservation SET name=:name, prenom=:prenom, email=:email, price=:price WHERE id_event=:id_event";
+			$db = database::getConnexiondb();
 			try
 			{
 				$query = $db->prepare($sql);
 				$query->execute([
-					'name' => $event->getName(),
-					'date' => $event->getDate(),
-					'location' => $event->getLocation(),
-					'price' => $event->getPrice(),
-					'description' => $event->getDescription(),
-                    'picture' => $event->getPicture(),
-					'id' => $id
+					'id_event' => $id,
+					'name' => $eventReservation->getLastname(),
+					'prenom' => $eventReservation->getFirstname(),
+					'email' => $eventReservation->getEmail()
 				]);
 				echo $query->rowCount() . " records UPDATED successfully <br>";
 			}catch (Exception $e){
 				echo 'Erreur: '.$e->getMessage();
 			}	
-		}*/
+		}
 		public function supprimerEvent($email,$id)
 		{
 			$sql="DELETE FROM eventreservation WHERE email=:email AND id_event=:id_event";

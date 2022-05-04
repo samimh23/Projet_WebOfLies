@@ -86,7 +86,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link href="../assets/demo/default/skins/header/menu/light.css" rel="stylesheet" type="text/css" />
 		<link href="../assets/demo/default/skins/brand/dark.css" rel="stylesheet" type="text/css" />
 		<link href="../assets/demo/default/skins/aside/dark.css" rel="stylesheet" type="text/css" />
-
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
 		<!--end::Layout Skins -->
 		<link rel="shortcut icon" href="../assets/media/logos/favicon.ico" />
 	</head>
@@ -236,132 +236,12 @@ License: You must have a valid license purchased only from themeforest(the above
 							<!--end: Quick panel toggler -->
 
 							<!--begin: Language bar -->
-							<div class="kt-header__topbar-item kt-header__topbar-item--langs">
-								<div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px">
-									<span class="kt-header__topbar-icon">
-										<img class="" src="../assets/media/flags/020-flag.svg" alt="" />
-									</span>
-								</div>
-								<div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround">
-									<ul class="kt-nav kt-margin-t-10 kt-margin-b-10">
-										<li class="kt-nav__item kt-nav__item--active">
-											<a href="#" class="kt-nav__link">
-												<span class="kt-nav__link-icon"><img src="../assets/media/flags/020-flag.svg" alt="" /></span>
-												<span class="kt-nav__link-text">English</span>
-											</a>
-										</li>
-										<li class="kt-nav__item">
-											<a href="#" class="kt-nav__link">
-												<span class="kt-nav__link-icon"><img src="../assets/media/flags/016-spain.svg" alt="" /></span>
-												<span class="kt-nav__link-text">Spanish</span>
-											</a>
-										</li>
-										<li class="kt-nav__item">
-											<a href="#" class="kt-nav__link">
-												<span class="kt-nav__link-icon"><img src="../assets/media/flags/017-germany.svg" alt="" /></span>
-												<span class="kt-nav__link-text">German</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
+							
 
 							<!--end: Language bar -->
 
 							<!--begin: User Bar -->
-							<div class="kt-header__topbar-item kt-header__topbar-item--user">
-								<div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="0px,0px">
-									<div class="kt-header__topbar-user">
-										<span class="kt-header__topbar-welcome kt-hidden-mobile">Hi,</span>
-										<span class="kt-header__topbar-username kt-hidden-mobile">Sean</span>
-										<img class="kt-hidden" alt="Pic" src="../assets/media/users/300_25.jpg" />
-
-										<!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
-										<span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">S</span>
-									</div>
-								</div>
-								<div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
-
-									<!--begin: Head -->
-									<div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" style="background-image: url(../assets/media/misc/bg-1.jpg)">
-										<div class="kt-user-card__avatar">
-											<img class="kt-hidden" alt="Pic" src="../assets/media/users/300_25.jpg" />
-
-											<!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
-											<span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">S</span>
-										</div>
-										<div class="kt-user-card__name">
-											Sean Stone
-										</div>
-										<div class="kt-user-card__badge">
-											<span class="btn btn-success btn-sm btn-bold btn-font-md">23 messages</span>
-										</div>
-									</div>
-
-									<!--end: Head -->
-
-									<!--begin: Navigation -->
-									<div class="kt-notification">
-										<a href="#" class="kt-notification__item">
-											<div class="kt-notification__item-icon">
-												<i class="flaticon2-calendar-3 kt-font-success"></i>
-											</div>
-											<div class="kt-notification__item-details">
-												<div class="kt-notification__item-title kt-font-bold">
-													My Profile
-												</div>
-												<div class="kt-notification__item-time">
-													Account settings and more
-												</div>
-											</div>
-										</a>
-										<a href="#" class="kt-notification__item">
-											<div class="kt-notification__item-icon">
-												<i class="flaticon2-mail kt-font-warning"></i>
-											</div>
-											<div class="kt-notification__item-details">
-												<div class="kt-notification__item-title kt-font-bold">
-													My Messages
-												</div>
-												<div class="kt-notification__item-time">
-													Inbox and tasks
-												</div>
-											</div>
-										</a>
-										<a href="#" class="kt-notification__item">
-											<div class="kt-notification__item-icon">
-												<i class="flaticon2-rocket-1 kt-font-danger"></i>
-											</div>
-											<div class="kt-notification__item-details">
-												<div class="kt-notification__item-title kt-font-bold">
-													My Activities
-												</div>
-												<div class="kt-notification__item-time">
-													Logs and notifications
-												</div>
-											</div>
-										</a>
-										<a href="#" class="kt-notification__item">
-											<div class="kt-notification__item-icon">
-												<i class="flaticon2-hourglass kt-font-brand"></i>
-											</div>
-											<div class="kt-notification__item-details">
-												<div class="kt-notification__item-title kt-font-bold">
-													My Tasks
-												</div>
-												<div class="kt-notification__item-time">
-													latest tasks and projects
-												</div>
-											</div>
-										</a>
-										<div class="kt-notification__custom">
-											<a href="custom_user_login-v2.html" target="_blank" class="btn btn-label-brand btn-sm btn-bold">Sign Out</a>
-										</div>
-									</div>
-
-									<!--end: Navigation -->
-								</div>
-							</div>
+							
 
 							<!--end: User Bar -->
 						</div>
@@ -450,7 +330,24 @@ License: You must have a valid license purchased only from themeforest(the above
 								</div>
 							</div>
 						</div>
+						<div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
+							<div class="kt-portlet kt-portlet--mobile">
+								<div class="kt-portlet__head kt-portlet__head--lg">
+									<div class="kt-portlet__head-label">
+										<span class="kt-portlet__head-icon">
+											<i class="kt-font-brand flaticon2-line-chart"></i>
+										</span>
+										<h3 class="kt-portlet__head-title">
+											Event Calender
+										</h3>
+									</div>
+								</div>
+								<div class="kt-portlet__body">
 
+								<div id="calendar"></div>
+								</div>
+							</div>
+						</div>
 						<!-- end:: Content -->
 					</div>
 
@@ -485,190 +382,12 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!-- end::Scrolltop -->
 
 		<!-- begin::Sticky Toolbar -->
-		<ul class="kt-sticky-toolbar" style="margin-top: 30px;">
-			<li class="kt-sticky-toolbar__item kt-sticky-toolbar__item--success" id="kt_demo_panel_toggle" data-toggle="kt-tooltip" title="Check out more demos" data-placement="right">
-				<a href="#" class=""><i class="flaticon2-drop"></i></a>
-			</li>
-			<li class="kt-sticky-toolbar__item kt-sticky-toolbar__item--brand" data-toggle="kt-tooltip" title="Layout Builder" data-placement="left">
-				<a href="https://keenthemes.com/metronic/preview/default/builder.html" target="_blank"><i class="flaticon2-gear"></i></a>
-			</li>
-			<li class="kt-sticky-toolbar__item kt-sticky-toolbar__item--warning" data-toggle="kt-tooltip" title="Documentation" data-placement="left">
-				<a href="https://keenthemes.com/metronic/?page=docs" target="_blank"><i class="flaticon2-telegram-logo"></i></a>
-			</li>
-		</ul>
+		
 
 		<!-- end::Sticky Toolbar -->
 
 		<!-- begin::Demo Panel -->
-		<div id="kt_demo_panel" class="kt-demo-panel">
-			<div class="kt-demo-panel__head">
-				<h3 class="kt-demo-panel__title">
-					Select A Demo
-
-					<!--<small>5</small>-->
-				</h3>
-				<a href="#" class="kt-demo-panel__close" id="kt_demo_panel_close"><i class="flaticon2-delete"></i></a>
-			</div>
-			<div class="kt-demo-panel__body">
-				<div class="kt-demo-panel__item kt-demo-panel__item--active">
-					<div class="kt-demo-panel__item-title">
-						Default
-					</div>
-					<div class="kt-demo-panel__item-preview">
-						<img src="../assets/media/demos/Demo-_Default.jpg" alt="" />
-						<div class="kt-demo-panel__item-preview-overlay">
-							<a href="../default/index.html" class="btn btn-brand btn-elevate " target="_blank">Preview</a>
-						</div>
-					</div>
-				</div>
-				<div class="kt-demo-panel__item ">
-					<div class="kt-demo-panel__item-title">
-						Demo 2
-					</div>
-					<div class="kt-demo-panel__item-preview">
-						<img src="../assets/media/demos/Demo-2.jpg" alt="" />
-						<div class="kt-demo-panel__item-preview-overlay">
-							<a href="../demo2/index.html" class="btn btn-brand btn-elevate " target="_blank">Preview</a>
-						</div>
-					</div>
-				</div>
-				<div class="kt-demo-panel__item ">
-					<div class="kt-demo-panel__item-title">
-						Demo 3
-					</div>
-					<div class="kt-demo-panel__item-preview">
-						<img src="../assets/media/demos/Demo-3.jpg" alt="" />
-						<div class="kt-demo-panel__item-preview-overlay">
-							<a href="../demo3/index.html" class="btn btn-brand btn-elevate " target="_blank">Preview</a>
-						</div>
-					</div>
-				</div>
-				<div class="kt-demo-panel__item ">
-					<div class="kt-demo-panel__item-title">
-						Demo 4
-					</div>
-					<div class="kt-demo-panel__item-preview">
-						<img src="../assets/media/demos/Demo-4.jpg" alt="" />
-						<div class="kt-demo-panel__item-preview-overlay">
-							<a href="../demo4/index.html" class="btn btn-brand btn-elevate " target="_blank">Preview</a>
-						</div>
-					</div>
-				</div>
-				<div class="kt-demo-panel__item ">
-					<div class="kt-demo-panel__item-title">
-						Demo 5
-					</div>
-					<div class="kt-demo-panel__item-preview">
-						<img src="../assets/media/demos/Demo-5.jpg" alt="" />
-						<div class="kt-demo-panel__item-preview-overlay">
-							<a href="../demo5/index.html" class="btn btn-brand btn-elevate " target="_blank">Preview</a>
-						</div>
-					</div>
-				</div>
-				<div class="kt-demo-panel__item ">
-					<div class="kt-demo-panel__item-title">
-						Demo 6
-					</div>
-					<div class="kt-demo-panel__item-preview">
-						<img src="../assets/media/demos/Demo-6.jpg" alt="" />
-						<div class="kt-demo-panel__item-preview-overlay">
-							<a href="../demo6/index.html" class="btn btn-brand btn-elevate " target="_blank">Preview</a>
-						</div>
-					</div>
-				</div>
-				<div class="kt-demo-panel__item ">
-					<div class="kt-demo-panel__item-title">
-						Demo 7
-					</div>
-					<div class="kt-demo-panel__item-preview">
-						<img src="../assets/media/demos/Demo-7.jpg" alt="" />
-						<div class="kt-demo-panel__item-preview-overlay">
-							<a href="../demo7/index.html" class="btn btn-brand btn-elevate " target="_blank">Preview</a>
-						</div>
-					</div>
-				</div>
-				<div class="kt-demo-panel__item ">
-					<div class="kt-demo-panel__item-title">
-						Demo 8
-					</div>
-					<div class="kt-demo-panel__item-preview">
-						<img src="../assets/media/demos/Demo-8.jpg" alt="" />
-						<div class="kt-demo-panel__item-preview-overlay">
-							<a href="../demo8/index.html" class="btn btn-brand btn-elevate " target="_blank">Preview</a>
-						</div>
-					</div>
-				</div>
-				<div class="kt-demo-panel__item ">
-					<div class="kt-demo-panel__item-title">
-						Demo 9
-					</div>
-					<div class="kt-demo-panel__item-preview">
-						<img src="../assets/media/demos/Demo-9.jpg" alt="" />
-						<div class="kt-demo-panel__item-preview-overlay">
-							<a href="../demo9/index.html" class="btn btn-brand btn-elevate " target="_blank">Preview</a>
-						</div>
-					</div>
-				</div>
-				<div class="kt-demo-panel__item ">
-					<div class="kt-demo-panel__item-title">
-						Demo 10
-					</div>
-					<div class="kt-demo-panel__item-preview">
-						<img src="../assets/media/demos/Demo-10.jpg" alt="" />
-						<div class="kt-demo-panel__item-preview-overlay">
-							<a href="../demo10/index.html" class="btn btn-brand btn-elevate " target="_blank">Preview</a>
-						</div>
-					</div>
-				</div>
-				<div class="kt-demo-panel__item ">
-					<div class="kt-demo-panel__item-title">
-						Demo 11
-					</div>
-					<div class="kt-demo-panel__item-preview">
-						<img src="../assets/media/demos/Demo-11.jpg" alt="" />
-						<div class="kt-demo-panel__item-preview-overlay">
-							<a href="../demo11/index.html" class="btn btn-brand btn-elevate " target="_blank">Preview</a>
-						</div>
-					</div>
-				</div>
-				<div class="kt-demo-panel__item ">
-					<div class="kt-demo-panel__item-title">
-						Demo 12
-					</div>
-					<div class="kt-demo-panel__item-preview">
-						<img src="../assets/media/demos/Demo-12.jpg" alt="" />
-						<div class="kt-demo-panel__item-preview-overlay">
-							<a href="../demo12/index.html" class="btn btn-brand btn-elevate " target="_blank">Preview</a>
-						</div>
-					</div>
-				</div>
-				<div class="kt-demo-panel__item ">
-					<div class="kt-demo-panel__item-title">
-						Demo 13
-					</div>
-					<div class="kt-demo-panel__item-preview">
-						<img src="../assets/media/demos/Demo-13.jpg" alt="" />
-						<div class="kt-demo-panel__item-preview-overlay">
-							<a href="#" class="btn btn-brand btn-elevate disabled">Coming soon</a>
-						</div>
-					</div>
-				</div>
-				<div class="kt-demo-panel__item ">
-					<div class="kt-demo-panel__item-title">
-						Demo 14
-					</div>
-					<div class="kt-demo-panel__item-preview">
-						<img src="../assets/media/demos/Demo-14.jpg" alt="" />
-						<div class="kt-demo-panel__item-preview-overlay">
-							<a href="#" class="btn btn-brand btn-elevate disabled">Coming soon</a>
-						</div>
-					</div>
-				</div>
-				<a href="" target="_blank" class="kt-demo-panel__purchase btn btn-brand btn-elevate btn-bold btn-upper">
-					Buy Metronic Now!
-				</a>
-			</div>
-		</div>
+		
 
 		<!-- end::Demo Panel -->
 
@@ -761,7 +480,10 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script src="../assets/vendors/general/jquery.repeater/src/repeater.js" type="text/javascript"></script>
 		<script src="../assets/vendors/general/dompurify/dist/purify.js" type="text/javascript"></script>
         <script src="../assets/vendors/custom/datatables/datatables.bundle.js" type="text/javascript"></script>
-
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  		<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
 		<!--end:: Global Optional Vendors -->
 
 		<!--begin::Global Theme Bundle(used by all pages) -->
@@ -787,6 +509,22 @@ License: You must have a valid license purchased only from themeforest(the above
             })
         </script>
 		<!--end::Global App Bundle -->
+	<!--Calender -->	
+	<script>
+		$(document).ready(function() {
+			var calendar = $('#calendar').fullCalendar({
+			editable:true,
+			header:{
+				left:'prev,next today',
+				center:'title',
+				right:'month,agendaWeek,agendaDay'
+			},
+			events: 'loadCalenderBack.php',
+			selectable:true,
+			selectHelper:true,
+			});
+		});
+   </script>
 	</body>
 
 	<!-- end::Body -->

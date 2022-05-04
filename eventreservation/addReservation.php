@@ -6,8 +6,15 @@
 	$id = $_GET['id'];
 	if(isset($_POST['event_reservation_lastname']) && isset($_POST['event_reservation_firstname']) && isset($_POST['event_reservation_email'])) {
         $EventReservation = new EventReservation($_POST['event_reservation_lastname'],$_POST['event_reservation_firstname'],$_POST['event_reservation_email']);
-		$EventReservationController->addReservation($EventReservation,$id);
-		header('Location:../event/display.php');
+		$msg=$EventReservationController->addReservation($EventReservation,$id,$_POST['event_reservation_email']);
+        if($msg!='Deja reserve')
+        {
+		    header('Location:../event/display.php');
+        }else
+        {   
+           echo "<script>alert(\"Email Déja Reservé\")</script>";
+        }
+        
     }
 ?>
 
@@ -118,13 +125,14 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-6 form-group wow fadeInUp animated">
 								<label for="c_name" class="sr-only">FirstName</label>
-                                <input type="text" class="form-control" id="event-reservation-firstname" name="event_reservation_firstname" placeholder="Enter your Last Name here">
+                                <input type="text" class="form-control" id="event-reservation-firstname" name="event_reservation_firstname" placeholder="Enter your First Name here">
                                 <span class="form-text" id="firstname-eventreservation-error"></span>
                             </div>
 							<div data-wow-delay=".1s" class="col-xs-12 col-sm-6 col-md-6 form-group wow fadeInUp animated">
 								<label for="c_email" class="sr-only">Email</label>
-								<input type="email" placeholder="E-mail" name="event_reservation_email" class="form-control" id="event-reservation-email" pattern="^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$" placeholder="e.g. info@envato.com" required="">
-							</div>
+								<input type="email" placeholder="E-mail" name="event_reservation_email" class="form-control" id="event-reservation-email" pattern="^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$" placeholder="e.g. info@envato.com">
+                                <span class="form-text" id="email-eventreservation-error"></span>
+                            </div>
 							<button data-wow-delay=".3s" class="btn btn-sm btn-block wow fadeInUp animated" type="submit">Submit</button>
                             <button data-wow-delay=".3s" class="btn btn-sm btn-block wow fadeInUp animated" type="reset">Cancel</button>
 						</div>
@@ -174,6 +182,7 @@
 	</footer>
     <!-- =============== jQuery =============== -->
     <script src="../assets/js/jquery.js"></script>
+    <script src="addReservationjs.js" type="text/javascript"></script>
     <!-- =============== Bootstrap Core JavaScript =============== -->
     <script src="../assets/js/bootstrap.min.js"></script>
     <!-- =============== Plugin JavaScript =============== -->
@@ -191,6 +200,7 @@
     <script src="../assets/js/creative.js">	</script>
 <script src="../assets/js/jquery.nicescroll.min.js"></script>
 
+
 <script>
   $(document).ready(function() {
   
@@ -207,6 +217,7 @@
     
   });
 </script>
+<script src="addReservationjs.js" type="text/javascript"></script>
 </body>
 </html>
 

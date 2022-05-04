@@ -37,6 +37,7 @@ $events = $eventController->index();
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
 </head>
 
 <body>
@@ -114,8 +115,8 @@ $events = $eventController->index();
                             <h3><?php echo $event['name']?></h3>
                             <p><?php echo $event['description']?></p>
                             <a href="../eventreservation/addReservation.php?id=<?php echo $event['id'] ?>">Reserver</a>
-                            <a href="../eventreservation/annulerReservation.php?id=<?php echo $event['id'] ?>">annuler</a>
-                            
+                            <a href="../eventreservation/updateReservation.php?id=<?php echo $event['id'] ?>">Modifier</a>
+                            <a href="../eventreservation/annulerReservation.php?id=<?php echo $event['id'] ?>">Annuler</a>
                         </div>
                     </div>
                     <?php
@@ -124,6 +125,19 @@ $events = $eventController->index();
 
             </div>
         </div>
+        <div class="container">
+            <div class="row">
+                <div class="title">
+                    <h2>Event Calander</h2>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 wow fadeInUp animated" data-wow-delay=".1s" style="margin-bottom: 15px;">
+                    
+                    <div id="calendar"></div>
+                </div>
+
+            </div>
+        </div>
+        
 	
 	</section>	
 	
@@ -166,6 +180,8 @@ $events = $eventController->index();
 	</footer>
     <!-- =============== jQuery =============== -->
     <script src="../assets/js/jquery.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <!-- =============== Bootstrap Core JavaScript =============== -->
     <script src="../assets/js/bootstrap.min.js"></script>
     <!-- =============== Plugin JavaScript =============== -->
@@ -183,6 +199,9 @@ $events = $eventController->index();
     <script src="../assets/js/creative.js">	</script>
 <script src="../assets/js/jquery.nicescroll.min.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+
 <script>
   $(document).ready(function() {
   
@@ -198,6 +217,23 @@ $events = $eventController->index();
     $("#boxscroll4").niceScroll("#boxscroll4 .wrapper",{boxzoom:true});  // hw acceleration enabled when using wrapper
     
   });
+</script>
+<script>
+   
+   $(document).ready(function() {
+    var calendar = $('#calendar').fullCalendar({
+     editable:true,
+     header:{
+      left:'prev,next today',
+      center:'title',
+      right:'month,agendaWeek,agendaDay'
+     },
+     events: 'load.php',
+     selectable:true,
+     selectHelper:true,
+    });
+   });
+    
 </script>
 </body>
 </html>
