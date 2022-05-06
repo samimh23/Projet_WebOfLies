@@ -7,6 +7,7 @@ class Reclamation
 	private $email;
 	private $objet;
 	private $contenu;
+	private $etat;
 	
 
 	function __construct($email,$objet,$contenu)
@@ -14,7 +15,8 @@ class Reclamation
     
         $this->email=$email ;
         $this->objet=$objet;
-		$this->contenu=$contenu;	
+		$this->contenu=$contenu;
+		$this->etat=0;	
 	}
     
 
@@ -31,6 +33,10 @@ class Reclamation
 	function getcontenu(){
 		return $this->contenu;
 	}
+	function getetat()
+	{
+		return $this->etat;
+	}
     
 	
 	
@@ -38,6 +44,9 @@ class Reclamation
 
 	function setemail($email){
 		$this->email=$email;
+	}
+	function setetat($etat){
+		$this->etat=$etat;
 	}
     function setobjet($objet){
 		$this->objet=$objet;

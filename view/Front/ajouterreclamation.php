@@ -1,6 +1,8 @@
 <?php
     include_once '../../model/Reclamation.php';
     include_once '../../controller/ReclamationC.php';
+	include_once '../../model/Réponse.php';
+    include_once '../../controller/RéponseC.php';
 
 
     $error = "";
@@ -34,12 +36,16 @@
                 
             );
             $reclamation->ajouterreclamation($recl);
-            header('Location:index.php');
+            header('Location:ajouterreclamation.php');
         }
         else
             $error = "Missing information";
     }
-    
+	$réponseC = new RéponseC();
+
+	$listeRec = $reclamation->afficherreclamation();
+	$listerep= $réponseC->afficherréponse(5);
+
 ?>
 <!DOCTYPE html>
 <!--
@@ -119,11 +125,12 @@
                         <li>
                             <a class="page-scroll" href="#Gallery">Gallery</a>
                         </li>
+                        
                         <li>
-                            <a class="page-scroll" href="#blog">Blog</a>
+                            <a class="page-scroll" href="#contact">Reclamation</a>
                         </li>
-                        <li>
-                            <a class="page-scroll" href="#contact">Contact</a>
+						<li>
+                            <a class="page-scroll" href="#blog">Réponse</a>
                         </li>
                     </ul>
                 </div>
@@ -534,67 +541,14 @@ nullam rhoncus tortor at dignissim vehicula.</p>
 
 
 </section>
-	<section id="blog" class="">
-		<!-- =============== container =============== -->
-        <div class="container">            
-            <div class="row">
-				<div class="title">
-				<h2>Our Blog</h2>
-				<p>Meet some of our lovely, passionate, positive people.</p>
-				</div>
-                 <div class="col-xs-12 col-sm-4 col-md-4 wow fadeInUp animated" data-wow-delay=".1s">
-                      <div class="blog-img">
-						<img src="assets/img/blog1.JPG"/>
-					  </div>
-					  <div class="row">
-					  <div class="data">30</div>
-					  <div class="month">March</div>
-					  </div>
-					  <div class="row">
-					  <h3>Travelling with kids Quensland Capricorn Coast</h3>
-					  <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Vestibulum ac vehicula leo dulam nullam rhoncus tortor at dignissim vehicula.</p>
-					  <a href="blog-single.html">MORE</a>
-					  </div>
-                  </div>        
-				 <div class="col-xs-12 col-sm-4 col-md-4 wow bounceIn animated" data-wow-delay=".4s">
-                      <div class="blog-img">
-						<img src="assets/img/blog2.JPG"/>
-					  </div>
-					  <div class="row">
-					  <div class="data">30</div>
-					  <div class="month">March</div>
-					  </div>
-					  <div class="row">
-					  <h3>Travelling with kids Quensland Capricorn Coast</h3>
-					  <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Vestibulum ac vehicula leo dulam nullam rhoncus tortor at dignissim vehicula.</p>
-					  <a href="blog-single.html">MORE</a>
-					  </div>
-                  </div>        
-				 <div class="col-xs-12 col-sm-4 col-md-4 wow fadeInDown animated" data-wow-delay=".3s">
-                      <div class="blog-img">
-						<img src="assets/img/blog3.JPG"/>
-					  </div>
-					  <div class="row">
-					  <div class="data">30</div>
-					  <div class="month">March</div>
-					  </div>
-					  <div class="row">
-					  <h3>Travelling with kids Quensland Capricorn Coast</h3>
-					  <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Vestibulum ac vehicula leo dulam nullam rhoncus tortor at dignissim vehicula.</p>
-					  <a href="blog-single.html">MORE</a>
-					  </div>
-                  </div>        
-            </div>
-        </div>   
-		<!-- =============== container end =============== -->		
-    </section>	
+	
 	<section id="contact">
 	<!-- =============== container =============== -->
 		<div class="container">
 			    <div class="row">
                 <div class="title">
-				<h2>Contact</h2>
-				<p>Meet some of our lovely, passionate, positive people.</p>
+				<h2>Reclamation</h2>
+				<p>Veuillez remplir le formulaire.</p>
 				</div>
 			</div>
 
@@ -630,6 +584,62 @@ nullam rhoncus tortor at dignissim vehicula.</p>
 			</div>
 		</div><!-- =============== container end =============== -->
 	</section>
+	<section id="blog" class="">
+		<!-- =============== container =============== -->
+        <div class="container">            
+            <div class="row">
+				<div class="title">
+				<h2>Réponses</h2>
+				<p>Consulter vos reclamations.</p>
+				</div>
+				<table class="table" id="kt_table_event">
+                                        <thead>
+                                            <tr>
+                                                <th>EMAIL</th>
+                                                <th>OBJET</th>
+                                                <th>CONTENU</th>
+												<th>REPONSE</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                                foreach($listeRec as $reclamation){
+													
+                                            ?>
+                                                <tr>
+                                                    <td><?php echo $reclamation['email'] ?></td>
+                                                    <td><?php echo $reclamation['objet'] ?></td>
+                                                    <td><?php echo $reclamation['contenu'] ?></td>
+													<?php if($reclamation['etat']==1){
+													
+													?>
+													<td>Résolu</td>
+
+                                                    <?php 
+													}else{
+													?>
+													<td>Pas encore <a href="modifierReclamation.php?id=<?php echo $reclamation['id'] ?>&email=<?php echo $reclamation['email'] ?>&objet=<?php echo $reclamation['objet'] ?>&contenu=<?php echo $reclamation['contenu'] ?>">Modifier</a></td>
+													<?php
+													}
+                                                
+                                            ?>
+                                                    <td>
+
+													
+												</td>
+                                                </tr>
+                                            <?php
+													
+												}
+                                                
+                                            ?>
+                                        </tbody>
+                                    </table>
+                </div>
+        </div>   
+		<!-- =============== container end =============== -->		
+    </section>	
     <!-- Footer -->
     <footer id="footer">
 	<!-- =============== container =============== -->

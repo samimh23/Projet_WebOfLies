@@ -2,5 +2,5 @@
 include '../../controller/reclamationC.php';
 $reclamationC=new reclamationC();
 $reclamationC->supprimerreclamation($_GET["id"]);
-header('Location:afficher.php');
+header('Location:afficherreclamation.php');
 ?>
