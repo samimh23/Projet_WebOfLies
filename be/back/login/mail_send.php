@@ -18,12 +18,8 @@ require_once "includeclasses/Exception.php";
 //define name spaces 
 use PHPMailer\PHPMailer\PHPMailer;
 // use PHPMailer\PHPMailer\Exception;
-if(isset($_SESSION['code']))
-{
-    $code=$_SESSION['code'];
-}
-else
-die('$'."_SESSION['code'] isn't set because you had never been at file one");
+$code=rand(1,1000);
+$_SESSION['code']=$code;
 use PHPmailer\PHPmailer\SMTP;
 use PHPmailer\PHPmailer\Exception;
 $mail = new PHPMailer();
@@ -48,7 +44,7 @@ $mail->SMTPDebug = 2;
     $mail->Subject="Password reset code";
     //Read an HTML message body from an external file, convert referenced images to embedded,
     //convert HTML into a basic plain-text alternative body
-    $mail->msgHTML(" Your verification code is: $code");   
+    $mail->msgHTML(" Your password reset code is: $code");   
     //Replace the plain text body with one created manually
     $mail->AltBody = 'This is a plain-text message body';
 

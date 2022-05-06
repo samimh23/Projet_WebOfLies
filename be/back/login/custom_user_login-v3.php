@@ -3,7 +3,7 @@
 require_once '../controllers/config.php';
 include_once '../controllers/utilisateursC.php';
 include_once '../models/utilisateurs.php';
-
+$captcha = $_SESSION['captcha_code'];
 $error = "";
 $adress = 'fathallahmehdi20@gmail.com';
 $pass = '1234abcd';
@@ -16,70 +16,96 @@ if (
 	isset($_POST["nom"]) &&
 	isset($_POST["prenom"]) &&
 	isset($_POST["email"]) &&
-	isset($_POST["pwd"])
+	isset($_POST["pwd"]) &&
+	isset($_POST["captcha_code"])
 ) {
 	if (
 		// !empty($_POST['id']) &&
 		!empty($_POST['nom']) &&
 		!empty($_POST["prenom"]) &&
 		!empty($_POST["email"]) &&
-		!empty($_POST["pwd"])
+		!empty($_POST["pwd"]) &&
+		!empty($_POST["captcha_code"])
 
 	) {
+		if($captcha==$_POST["captcha_code"]){
 		foreach ($listeutilisateurs as $utilisateur) {
 			if ($utilisateur['email'] == $_POST['email']) {
 				$error = 'email takendd!!';
-				$k = 1;
+?>
+				<script>
+					alert("email taken");
+				</script> <?php
+							$k = 1;
+						}
+					}
+					if ($k == 0) {
+
+						// $_POST['id'],
+						$_SESSION['nom_verif'] = $_POST['nom'];
+						$_SESSION['prenom_verif'] = $_POST['prenom'];
+						$_SESSION['email_verif'] = $_POST['email'];
+						// password_hash($_POST['pwd'],PASSWORD_DEFAULT)
+						$_SESSION['pwd_verif'] = $_POST['pwd'];
+						// $_SESSION['utilisateur_verif'] = $utilisateur;
+						// $utilisateurc->ajouterutilisateur($utilisateur);
+						header('location: mail_verification.php');
+					}
+	}
+	else
+	?> <script> alert("wrong captcha"); </script>
+	<?php 
+} else
+					$error = "Missing information";
 			}
-		}
-		if ($k == 0) {
+			// ob_start();
+			// session_start();
+			// $_SESSION['email2']=$_POST['email2'];
+			// $_SESSION['password2']=$_POST['password2'];
+			if (
+				isset($_POST['email2']) &&
+				isset($_POST["password2"])
+			) {
+				if (
+					!empty($_POST['email2']) &&
+					!empty($_POST['password2'])
+				) {
+					foreach ($listeutilisateurs as $utilisateur) {
 
-			// $_POST['id'],
-			$_SESSION['nom_verif'] = $_POST['nom'];
-			$_SESSION['prenom_verif'] = $_POST['prenom'];
-			$_SESSION['email_verif'] = $_POST['email'];
-			// password_hash($_POST['pwd'],PASSWORD_DEFAULT)
-			$_SESSION['pwd_verif'] = $_POST['pwd'];
-			// $_SESSION['utilisateur_verif'] = $utilisateur;
-			// $utilisateurc->ajouterutilisateur($utilisateur);
-			header('location: mail_verification.php');
-		}
-	} else
-		$error = "Missing information";
-}
-// ob_start();
-// session_start();
-// $_SESSION['email2']=$_POST['email2'];
-// $_SESSION['password2']=$_POST['password2'];
-if (
-	isset($_POST['email2']) &&
-	isset($_POST["password2"])
-) {
-	if (
-		!empty($_POST['email2']) &&
-		!empty($_POST['password2'])
-	) {
-		foreach ($listeutilisateurs as $utilisateur) {
-
-			if (($_POST['email2'] == $utilisateur['email']) && ($_POST['password2'] == $utilisateur['pwd'])) {
-				// $_session['email2'] = $_POST['email2'];
-				// $_session['password2'] = $_POST['password2'];
-				// $_SESSION['auth']=true;
-				if (($_POST['email2'] == $adress) && ($_POST['password2'] == $pass)) {
-					$_SESSION['auth'] = true;
-					header('Location: index.php');
-				} else {
-					$_SESSION['nom_client'] = $utilisateur['nom'];
-					$_SESSION['prenom_client'] = $utilisateur['prenom'];
-					$_SESSION['email_client'] = $_POST['email2'];
-					$_SESSION['pwd_client'] = $_POST['password2'];
-					header('Location: home.php');
+						if (($_POST['email2'] == $utilisateur['email']) && ($_POST['password2'] == $utilisateur['pwd'])) {
+							if (!empty($_POST["remember"])) {
+								$email_cookie = $_POST['email2'];
+								$pwd_cookie = $_POST['password2'];
+								setcookie("member_login", $email_cookie, time() + (10 * 365 * 24 * 60 * 60));
+								setcookie("member_password", $pwd_cookie, time() + (10 * 365 * 24 * 60 * 60));
+								// $_SESSION["admin_name"] = $name;
+							} else {
+								if (isset($_COOKIE["member_login"])) {
+									setcookie("member_login", "");
+								}
+								if (isset($_COOKIE["member_password"])) {
+									setcookie("member_password", "");
+								}
+							}
+							// $_session['email2'] = $_POST['email2'];
+							// $_session['password2'] = $_POST['password2'];
+							// $_SESSION['auth']=true;
+							if (($_POST['email2'] == $adress) && ($_POST['password2'] == $pass)) {
+								// $_SESSION['auth'] = true;
+								// if($_SESSION['auth']==true)
+								header('Location: index.php');
+							} else {
+								$_SESSION['nom_client'] = $utilisateur['nom'];
+								$_SESSION['prenom_client'] = $utilisateur['prenom'];
+								$_SESSION['email_client'] = $_POST['email2'];
+								$_SESSION['pwd_client'] = $_POST['password2'];
+								header('Location: home.php');
+							}
+						}
+					}
 				}
 			}
-		}
-	}
-}
-?>
+							?>
 
 <!DOCTYPE html>
 
@@ -226,16 +252,24 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 							<form class="kt-form" method="POST" action="">
 								<div class="input-group">
-									<input class="form-control" type="text" placeholder="Name" id="nom" name="nom">
+									<input class="form-control" type="text" placeholder="Name" name="nom" required>
 								</div>
 								<div class="input-group">
-									<input class="form-control" type="text" placeholder="Lastname" id="prenom" name="prenom">
+									<input class="form-control" type="text" placeholder="Lastname" name="prenom" required>
 								</div>
 								<div class="input-group">
-									<input class="form-control" type="text" placeholder="Email" id="email" name="email" autocomplete="on">
+									<input class="form-control" type="text" placeholder="Email" name="email" autocomplete="on" required>
 								</div>
 								<div class="input-group">
-									<input class="form-control" type="password" placeholder="Password" id="pwd" name="pwd">
+									<input class="form-control" type="password" placeholder="Password" name="pwd" required>
+								</div>
+								<div class="form-group">
+									<label>Code</label>
+									<div class="input-group">
+										<input type="text" name="captcha_code" id="captcha_code" class="form-control" />
+										<span style="padding:0">
+											<img src="image.php" id="captcha_image" />
+									</div>
 								</div>
 
 								<div class="row kt-login__extra">
@@ -248,8 +282,8 @@ License: You must have a valid license purchased only from themeforest(the above
 									</div>
 								</div>
 								<div class="kt-login__actions">
-									<button type="submit" id="signup ama KENET HAJA OKHRA" class="btn btn-brand btn-elevate kt-login__btn-primary">Sign Up</button>&nbsp;&nbsp;
-									<button id="kt_login_signup_cancel" class="btn btn-light btn-elevate kt-login__btn-secondary">Cancel</button>
+									<button type="submit" id="signup ama KENET HAJA OKHRA" name="register" class="btn btn-brand btn-elevate kt-login__btn-primary">Sign Up</button>&nbsp;&nbsp;
+									<button class="btn btn-light btn-elevate kt-login__btn-secondary">Cancel</button>
 								</div>
 
 							</form>
@@ -390,6 +424,57 @@ License: You must have a valid license purchased only from themeforest(the above
 
 	<!--begin::Global App Bundle(used by all pages) -->
 	<script src="../assets/app/bundle/app.bundle.js" type="text/javascript"></script>
+	<!--<script>
+ $(document).ready(function(){
+  
+  $('#captch_form').on('submit', function(event){
+   event.preventDefault();
+   if($('#captcha_code').val() == '')
+   {
+    alert('Enter Captcha Code');
+    $('#register').attr('disabled', 'disabled');
+    return false;
+   }
+   else
+   {
+    alert('Form has been validate with Captcha Code');
+    $('#captch_form')[0].reset();
+    $('#captcha_image').attr('src', 'image.php');
+   }
+  });
+
+  $('#captcha_code').on('blur', function(){
+   var code = $('#captcha_code').val();
+   
+   if(code == '')
+   {
+    alert('Enter Captcha Code');
+    $('#register').attr('disabled', 'disabled');
+   }
+   else
+   {
+    $.ajax({
+     url:"check_code.php",
+     method:"POST",
+     data:{code:code},
+     success:function(data)
+     {
+      if(data == 'success')
+      {
+       $('#register').attr('disabled', false);
+      }
+      else
+      {
+       $('#register').attr('disabled', 'disabled');
+       alert('Invalid Code');
+      }
+     }
+    });
+   }
+  });
+
+ });
+</script>-->
 
 	<!--end::Global App Bundle -->
 </body>

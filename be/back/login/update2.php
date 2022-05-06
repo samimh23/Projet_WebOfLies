@@ -34,8 +34,12 @@ if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && 
 	
         $utilisateur1 = new utilisateur($lastname,$name,$email,$_POST['pwd']);
         $utilisateurC->modifierutilisateur($utilisateur1,$email);
+		?>
+		<script>alert('You have successfully reset your password!'); </script>
+		<?php
+		header("location: custom_user_login-v3.php");
     }
-    
+
 ?>										
 <!DOCTYPE html>
 
@@ -157,8 +161,8 @@ License: You must have a valid license purchased only from themeforest(the above
 									</div>
 						
 									<div class="kt-login__actions">
-										<button type ="submit" id="kt_login_signup_submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Confirm</button>&nbsp;&nbsp;
-										<button id="kt_login_signup_cancel" class="btn btn-light btn-elevate kt-login__btn-secondary">Cancel</button>
+										<button type ="submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Confirm</button>&nbsp;&nbsp;
+										<button  class="btn btn-light btn-elevate kt-login__btn-secondary">Cancel</button>
 									</div>
 								</form>
 							</div>

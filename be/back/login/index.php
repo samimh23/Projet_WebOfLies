@@ -359,9 +359,12 @@ License: You must have a valid license purchased only from themeforest(the above
 											</div>
 										</a>
 										<div class="kt-notification__custom">
-											<a href="sign_out.php" target="_blank" class="btn btn-label-brand btn-sm btn-bold">Sign Out</a>
-											<button class="btn btn-label-brand btn-sm btn-bold" id="kt_aside_mobile_toggler" target="_blank"><span></span></button>
+											<a href="sign_out.php"  class="btn btn-label-brand btn-sm btn-bold">Sign Out</a>
+											<button class="btn btn-label-brand btn-sm btn-bold"  ><span></span></button>
+											<!-- HEDHI KENET FEL BUTTON id="kt_aside_mobile_toggler"  target="_blank" lekhra kenet mawjouda fel <a zeda -->
+											<!-- KEN FAMMA MOCHKEL FEL SESSIONS CHOUF HEDHI SIGN_OUT.PHP NAHHI MENHA EL SESSION UNSET -->
 										</div>
+										
 									</div>
 
 									<!--end: Navigation -->

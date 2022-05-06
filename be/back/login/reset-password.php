@@ -5,7 +5,7 @@ session_start();
 require_once '../controllers/utilisateursC.php';
 require_once '../controllers/config.php';
 include_once '../models/utilisateurs.php';
-
+ $code_reset=$_SESSION['code'];
 // session_start();
 $utilisateur = null;
 $utilisateurc = new utilisateurc;
@@ -14,8 +14,8 @@ if(isset($_POST['codee']))
 {
     if(!empty($_POST['codee']))
     {
-        foreach ($listeutilisateurs as $utilisateur) {
-			if ($utilisateur['code'] == $_POST['codee']) 
+        // foreach ($listeutilisateurs as $utilisateur) {
+			if ($code_reset == $_POST['codee']) 
             {
                 ?>
                 <script>alert("YOU HAVE ENTERED THE CORRECT CODE");
@@ -27,7 +27,7 @@ if(isset($_POST['codee']))
                 ?><script>alert("WRONG CODE TRY AGAIN");</script>
                 <?php
             }*/
-        }
+        // }
     }
 }
 ?>
@@ -45,10 +45,10 @@ if(isset($_POST['codee']))
             <div class="col-md-4 offset-md-4 form">
                 <form action="reset-password.php" method="POST" autocomplete="no">
                     <!--<h2 class="text-center">Forgot Password</h2>-->
-                    <p class="text-center">Enter Recovery code</p>
+                    <p class="text-center"><strong><h4>Enter Recovery code</h4></strong></p>
                     
                     <div class="form-group">
-                        <input class="form-control" type="text" name="codee" placeholder="Enter code here" required >
+                        <input class="form-control" type="text" name="codee" placeholder="Enter code here" autocomplete="off" required >
                     </div>
                     <button type="submit" >Submit</button>
                 </form>

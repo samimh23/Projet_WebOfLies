@@ -31,6 +31,8 @@ if (isset($_POST['code_verif'])) {
 
 );
 $utilisateuur->ajouterutilisateur($utilisateur);
+$_SESSION['auth'] = true;
+            if($_SESSION['auth'])
             header('Location: custom_user_login-v3.php');
             /* else
             {

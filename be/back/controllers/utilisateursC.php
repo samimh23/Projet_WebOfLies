@@ -15,8 +15,8 @@ class utilisateurc{
     
 }
 function ajouterutilisateur($utilisateur){
-    $code = rand(0, 1000);
-    $sql="INSERT INTO user (nom, prenom, email, pwd, code) VALUES (:nom,:prenom,:email,:pwd,$code)";
+    // $code = rand(0, 1000);
+    $sql="INSERT INTO user (nom, prenom, email, pwd) VALUES (:nom,:prenom,:email,:pwd)";
     $db = config::getConnexion();
     try{
         $query = $db->prepare($sql);

@@ -13,7 +13,7 @@ if(isset($_POST['emaiil']))
         foreach ($listeutilisateurs as $utilisateur) {
 			if ($utilisateur['email'] == $_POST['emaiil']) 
             {
-                $_SESSION['code']=$utilisateur['code'];
+                // $_SESSION['code']=$utilisateur['code'];
                 $_SESSION['email']=$utilisateur['email'];
                 // $_SESSION['code']=$code;
                  header('Location: mail_send.php');
