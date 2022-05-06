@@ -75,6 +75,7 @@
 				}
 			});
 		</script>
+		<script src="reserv.js"></script>
 
 		<!--end::Fonts -->
 
@@ -243,7 +244,7 @@
 										<div class=" ">
 											<div class="row">
 												<div class="col-lg-9 ml-lg-auto">
-													<button type="submit" class="btn btn-success">Validate</button>
+													<button type="submit" class="btn btn-success" id="submit" name="submit" value="Envoyer" onclick="verifier()">Validate</button>
 													<button type="reset" class="btn btn-secondary">Cancel</button>
 												</div>
 											</div>

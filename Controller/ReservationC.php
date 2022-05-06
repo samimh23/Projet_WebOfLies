@@ -13,6 +13,35 @@
 				die('Erreur:'. $e->getMeesage());
 			}
 		}
+
+		function recupererprix($matricule){
+			$sql="SELECT * from voiture where matricule=:matricule";
+			$db = config::getConnexion();
+			try{
+				$query=$db->prepare($sql);
+				$query->execute(['matricule'=>$matricule]);
+
+				$prix=$query->fetch();
+				return $prix;
+			}
+			catch(Exception $e){
+				die('Erreur:'. $e->getMeesage());
+			}
+		}
+		function recuperermatricules(){
+			$sql="SELECT * from voiture";
+			$db = config::getConnexion();
+			try{
+
+				
+
+				$liste = $db->query($sql);
+				return $liste;
+			}
+			catch(Exception $e){
+				die('Erreur:'. $e->getMeesage());
+			}
+		}
 		
 		function supprimerreservation($code){
 			$sql="DELETE FROM reservation WHERE code=:code";
@@ -27,8 +56,8 @@
 			}
 		}
 		function ajouterreservation($reservation){
-			$sql="INSERT INTO reservation ( datee, jours, mat) 
-			VALUES (:datee,:jours, :mat)";
+			$sql="INSERT INTO reservation ( datee, jours, matricule) 
+			VALUES (:datee,:jours, :matricule)";
 			$db = config::getConnexion();
 			try{
 				$query = $db->prepare($sql);
@@ -36,7 +65,7 @@
 					
 					':datee' => $reservation->getdate(),
 					':jours' => $reservation->getjours(),
-					':mat' => $reservation->getmat()
+					':matricule' => $reservation->getmat()
 					
 				]);			
 			}
@@ -68,7 +97,7 @@
 						 
 						datee= :datee, 
 						jours= :jours, 
-						mat= :mat, 
+						mat= :mat
 						
 					WHERE code= :code'
 				);

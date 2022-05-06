@@ -35,6 +35,7 @@
         else
             $error = "Missing information";
     }
+    $prix=$reservationC->recuperermatricules(); 
 
     
 ?>
@@ -98,7 +99,7 @@
     </nav>
     <header id="home" class="header">
 
-        
+        <script src="reserv.js"></script>
     <center><h2>Merci de réserver :</h2></center>
     
          <form action="" method="POST">
@@ -133,13 +134,30 @@
                   </label>
                </td>
                <td>
-                  <input type="text" id="mat" name="mat" class="long"/>
+                  <!--<input type="text" id="mat" name="mat" class="long"/>  -->
+                 
+                  <select id="mat" type="text" name="mat">
+                  <?php
+                foreach($prix as $p)
+                { ?>
+
+
+                  
+<option> <?php
+                 echo $p['matricule']; ?> </option>
+                 <?php
+	
+                }
+	
+
+    ?>
+               </select>
                </td>
             </tr>
             <tr>
                <td></td>
                <td>
-                  <input type="submit" id="submit" name="submit" value="Envoyer">      
+                  <input type="submit" id="submit" name="submit" value="Envoyer" onclick="verifier()">      
                   <input type="reset" value="Réinitialiser"> 
                </td>
             </tr>
@@ -166,15 +184,12 @@
 	<!-- =============== jQuery =============== -->
     <script src="../assets/js/jquery.js"></script>
 	 <script src="../assets/js/isotope-docs.min.js"></script>
-    <!-- =============== Bootstrap Core JavaScript =============== -->
-    <script src="../assets/js/bootstrap.min.js"></script>
+   
     <!-- =============== Plugin JavaScript =============== -->
     <script src="../assets/js/jquery.easing.min.js"></script>
     <script src="../assets/js/jquery.fittext.js"></script>
     <script src="../assets/js/wow.min.js"></script> 
-	<!-- =============== owl carousel =============== -->
-    <script src="../assets/owl-carousel/owl.carousel.js"></script>  
-	<!-- Isotope does NOT require jQuery. But it does make things easier -->
+	
 
 <script src="../assets/js/baguetteBox.js" async></script>
 <script src="../assets/js/plugins.js" async></script>
@@ -182,45 +197,9 @@
     <!-- =============== Custom Theme JavaScript =============== -->
     <script src="../assets/js/creative.js">	</script> 
 <script src="../assets/js/jquery.nicescroll.min.js"></script>
-<!--Template js-->
-<script>
-  $(document).ready(function() {
-  
-	var nice = $("html").niceScroll();  // The document page (body)
-	
-	$("#div1").html($("#div1").html()+' '+nice.version);
-    
-    $("#boxscroll").niceScroll({cursorborder:"",cursorcolor:"#00F",boxzoom:true}); // First scrollable DIV
 
-    $("#boxscroll2").niceScroll("#contentscroll2",{cursorcolor:"#F00",cursoropacitymax:0.7,boxzoom:true,touchbehavior:true});  // Second scrollable DIV
-    $("#boxframe").niceScroll("#boxscroll3",{cursorcolor:"#0F0",cursoropacitymax:0.7,boxzoom:true,touchbehavior:true});  // This is an IFrame (iPad compatible)
-	
-    $("#boxscroll4").niceScroll("#boxscroll4 .wrapper",{boxzoom:true});  // hw acceleration enabled when using wrapper
-    
-  });
-</script>
-<!--Template js-->
-<script> 
 
-window.onload = function() {
-    if(typeof oldIE === 'undefined' && Object.keys)
-        hljs.initHighlighting();
 
-    baguetteBox.run('.baguetteBoxOne');
-    baguetteBox.run('.baguetteBoxTwo');
-    baguetteBox.run('.baguetteBoxThree', {
-        animation: 'fadeIn'
-    });
-    baguetteBox.run('.baguetteBoxFour', {
-        buttons: false
-    });
-    baguetteBox.run('.baguetteBoxFive', {
-        captions: function(element) {
-            return element.getElementsByTagName('img')[0].alt;
-        }
-    });
-};
-</script>
 
                                        
 </body>

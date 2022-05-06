@@ -1,24 +1,18 @@
 
-function verifier()
+function verifier(e)
 {
 
-if(document.getElementById("jours").value>100)
+/*if(document.getElementById("jours").value>100)
+    {
     alert('Le nombre des jours est faux!');
-    
-    var today = new Date();
-        var dateNais =new Date(document.getElementById("date").value) ;
-        if (today< dateNais) 
-        {alert('True date');
-            
-        }
-
-
-        else 
-         {
-             alert('False Date'); 
-
-            }
+   
+    }*/
+    alert('pas d envoi !!!');
+    e.preventDefault();
 }
 
 var b=document.getElementById('submit');
 b.addEventListener('click',verifier);
+
+//b.addEventListener('click',stop(e));
+

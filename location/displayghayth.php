@@ -2,6 +2,7 @@
 	include '../Controller/ReservationC.php';
 	$reservationC=new ReservationC();
 	$listeReservations=$reservationC->afficherreservation(); 
+
 ?>
 <html lang="en">
 
@@ -80,6 +81,7 @@
 				<th>Datee</th>
 				<th>Jours</th>
 				<th>Matricule</th>
+                <th>Prix total</th>
                 <th>Modifier</th>
                 <th>Supprimer</th>
 				
@@ -91,11 +93,22 @@
 				<td><?php echo $reservation['code']; ?></td>
 				<td><?php echo $reservation['datee']; ?></td>
 				<td><?php echo $reservation['jours']; ?></td>
-				<td><?php echo $reservation['mat']; ?></td>
+				<td><?php echo $reservation['matricule']; ?></td>
+               
+<?php
+	
+	
+	$prix=$reservationC->recupererprix($reservation['matricule']); 
+
+?>
+
+                <td><?php
+                 echo $reservation['jours']*$prix['prix']; ?></td>
+                 
 				<td>
 					<form method="POST" action="updateghayth.php">
 						<input type="submit" name="Modifier" value="Modifier">
-						<input type="hidden" value=<?PHP echo $reservation['code']; ?> id="123">
+						<input type="hidden" value=<?PHP echo $reservation['code']; ?> name="code">
 					</form>
 				</td>
                 <td>
@@ -103,9 +116,10 @@
 				</td>
 				
 			</tr>
-			<?php
+            <?php
 				}
 			?>
+
 		</table>
    
         <a href="http://localhost/be/location/addghayth.php"  style="color:black;">

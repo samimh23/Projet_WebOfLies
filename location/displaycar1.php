@@ -5,18 +5,7 @@
 ?>
 <!DOCTYPE html>
 
-<!-- 
-Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4 & Angular 7
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-Renew Support: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
--->
+
 <html lang="en">
 
 	<!-- begin::Head -->
@@ -439,10 +428,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<input type="submit" name="modifier" value="modifier">
 						<input type="hidden" value="<?PHP echo $voiture['matricule']; ?>" name="matricule">
 					</form>
-                                                        <!--<a href="./updatecar.php?id=<?php echo $voiture['matricule'] ?>" title="Edit details" class="btn btn-sm btn-clean btn-icon btn-icon-md">
-                                                            <i class="la la-edit"></i>
-                                                        </a>-->
-                                                        </td>
+                                                        
 														
                                                         <td>
                                                         <a href="deletecar.php?code=<?php echo $voiture['matricule']; ?>">Supprimer</a>

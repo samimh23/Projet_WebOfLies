@@ -2,49 +2,41 @@
     include_once '../Model/Reservation.php';
     include_once '../Controller/ReservationC.php';
 
-    /*$error = "";
+    $error = "";
 
     // create adherent
     $reservation = null;
 
     // create an instance of the controller
     $reservationC = new ReservationC();
-    $code=$_GET['code'];
-    $reservation=ReservationC->recupererreservation($code);
+    
 
     if (
-        isset($_POST["code"]) &&
+        
 		isset($_POST["date"]) &&		
         isset($_POST["jours"]) &&
-		isset($_POST["prix"]) 
+		isset($_POST["mat"]) 
     ) {
         if (
-            !empty($_POST["code"]) && 
+            
 			!empty($_POST['date']) &&
             !empty($_POST["jours"]) && 
-			!empty($_POST["prix"]) 
+			!empty($_POST["mat"]) 
             
         ) {
             $reservation = new reservation(
-                $_POST['code'],
+               
 				$_POST['date'],
                 $_POST['jours'], 
-				$_POST['prix']
+				$_POST['mat']
             );
-            $reservationC->modifierreservation($reservation,$code);
-            
+            $reservationC->modifierreservation($reservation,$_POST["code"]);
+            header('Location:displayghayth.php');
         }
         else
             $error = "Missing information";
-    }*/
-    $ReservationC = new ReservationC();
-	//$code = $_GET['code'];
-	$reservation = $ReservationC->recupererreservation($_GET['code']);
-	if(isset($_POST['date']) && isset($_POST['jours']) && isset($_POST['prix'])) {
-        $reservation = new reservation($_POST['date'],$_POST['jours'],$_POST['prix']);
-        $ReservationC->modifierreservation($reservation,$_GET['code']);
-        
-	}
+    }
+   
     
 ?>
  
@@ -116,21 +108,25 @@
 
         
     <center><h2>Réservation</h2></center>
+    <?php
+			if (isset($_POST['code'])){
+				$reservation = $reservationC->recupererreservation($_POST['code']);
+				
+		?>
          <form action="" method="POST">
       
          <table >
             
-            <!--<tr>
+         <tr>
                <td>
                   <label>
-                     Date de debut <span class="required">*</span>
+                        Date <span class="required">*</span>
                   </label>
                </td>
                <td>
-                  <input type="text" id="date" name="date" value="<?php //echo $reservation['datee']; ?>" class="long"/>
-                  
+                  <input type="date" id="date" name="date" value="<?php echo $reservation['datee']; ?>" class="long"/>
                </td>
-            </tr>-->
+            </tr>
             <tr>
                <td>
                   <label>
@@ -144,52 +140,31 @@
             <tr>
                <td>
                   <label>
-                        Prix <span class="required">*</span>
+                        Matricule <span class="required">*</span>
                   </label>
                </td>
                <td>
-                  <input type="number" id="prix" name="prix" value="<?php echo $reservation['prix']; ?>" class="long"/>
+                  <input type="text" id="mat" name="mat" value="<?php echo $reservation['matricule']; ?>" class="long"/>
                </td>
             </tr>
             <tr>
                <td></td>
                <td>
-                  <input type="submit" id="submit" name="submit" value="Modifier">      
+                  <input type="submit" id="submit" name="submit" value="Envoyer">      
                   <input type="reset" value="Annuler"> 
                </td>
             </tr>
          </table>
       </form>
+      <?php
+			}
+				
+		?>
      
     </header>
    
     
-    <!--My js: Probleme de l'adresse : reserv.js !!!-->
-    <script >
-    function verifier()
-{
-
-if(document.getElementById("jours").value>100)
-    alert('Le nombre des jours est faux!');
-    
-    /*var today = new Date();
-        var dateNais =new Date(document.getElementById("date").value) ;
-        if (today< dateNais) 
-        {alert('True date');
-            
-        }
-
-
-        else 
-         {
-             alert('False Date'); 
-
-            }*/
-}
-
-var b=document.getElementById('submit');
-b.addEventListener('click',verifier);
-    </script>
+   
 
 
 
