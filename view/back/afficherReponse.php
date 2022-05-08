@@ -3,6 +3,31 @@
     include '../../Controller/RéponseC.php';
 	$réponseC = new réponseC();
     $liste = $réponseC->afficherreponse();
+	$con = mysqli_connect('localhost','root','','vitefait');
+    if(!$con)
+    {
+        echo ' Please Check Your Connection ';
+    }
+
+    if(isset($_GET['page']))
+    {
+        $page = $_GET['page'];
+    }
+    else
+    {
+        $page = 1;
+    }
+
+    $num_per_page = 02;
+    $start_from = ($page-1)*02;
+    
+    $query = "select * from réponse limit $start_from,$num_per_page";
+    $result = mysqli_query($con,$query);
+
+
+
+
+
 ?>
 <!DOCTYPE html>
 
@@ -429,7 +454,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </thead>
                                         <tbody>
                                             <?php
-                                                foreach($liste as $Reponse){
+                                                while($Reponse=mysqli_fetch_assoc($result)){
                                             ?>
                                                 <tr>
                                                     <th scope="row"><?php echo $Reponse['id_réponse'] ?></th>
@@ -487,6 +512,31 @@ License: You must have a valid license purchased only from themeforest(the above
 			<i class="fa fa-arrow-up"></i>
 		</div>
 
+		<?php 
+        
+        $pr_query = "select * from réponse ";
+        $pr_result = mysqli_query($con,$pr_query);
+        $total_record = mysqli_num_rows($pr_result );
+        
+        $total_page = ceil($total_record/$num_per_page);
+
+        if($page>1)
+        {
+            echo "<a href='afficherReponse.php?page=".($page-1)."' class='btn btn-danger'  >Previous</a>";
+        }
+
+        
+        for($i=1;$i<$total_page;$i++)
+        {
+            echo "<a href='afficherReponse.php?page=".$i."' class='btn btn-primary'  >$i</a>";
+        }
+
+        if($i>$page)
+        {
+            echo "<a href='afficherReponse.php?page=".($page+1)."' class='btn btn-danger'>Next</a>";
+        }
+
+?>
 		<!-- end::Scrolltop -->
 
 		<!-- begin::Sticky Toolbar -->

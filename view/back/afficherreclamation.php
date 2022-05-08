@@ -3,6 +3,15 @@
     include '../../Controller/ReclamationC.php';
 	$reclamationC = new reclamationC();
     $liste = $reclamationC->afficherreclamation();
+	if(isset($_GET['trie']))
+      {
+           $liste = $reclamationC->tri($_GET["tri1"], $_GET["tri2"]);
+      }
+	  if(isset($_GET['recherche']))
+{
+    $search_value=$_GET["recherche"];
+    $liste=$reclamationC->recherche($search_value);
+}
 ?>
 <!DOCTYPE html>
 
@@ -409,9 +418,44 @@ License: You must have a valid license purchased only from themeforest(the above
 										<span class="kt-portlet__head-icon">
 											<i class="kt-font-brand flaticon2-line-chart"></i>
 										</span>
-										<h3 class="kt-portlet__head-title">
-											Reclamations
-										</h3>
+										
+										<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="get" action="afficherreclamation.php">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control bg-light border-0 small" placeholder="Rechercher reclamation "
+                                                                    aria-label="Search" aria-describedby="basic-addon2" name="recherche">
+                                                                <div class="input-group-append">
+                                                                    <button class="btn btn-primary" type="submit" value="Chercher">
+                                                                        <i class="fas fa-search fa-sm"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </th>
+                                                    <th>
+										<br><br/>
+										<form method="get" action="afficherreclamation.php">
+
+                                                          
+<select name="tri1" id="tri1" class"form-control">
+
+
+       
+    <option value = id> id  </option>
+    <option value = email> @email </option>
+    
+</select>
+
+<select name="tri2" id="tri2" class"form-control">
+
+
+
+       <option value = ASC> Ascendant </option>
+       <option value = DESC> Descendant </option>
+
+</select>
+
+    <button type="submit" class="btn btn-primary" name="trie">Trie</button>
+</form>
 									</div>
 								</div>
 								<div class="kt-portlet__body">

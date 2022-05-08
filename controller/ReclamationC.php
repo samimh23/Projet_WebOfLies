@@ -130,6 +130,35 @@
                 die('Erreur: '.$e->getMessage());
             }	
         }
+        function tri($tri1, $tri2)
+    {
+         $sql="SELECT * from reclamation order by ".$tri1."  ".$tri2." ";
+         $db = config::getConnexion();
+            try{
+            $liste=$db->query($sql);
+            return $liste;
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }	
+     }
+     function recherche($search_value)
+        {
+            $sql="SELECT * FROM reclamation where id like '$search_value' ";
+        
+            //global $db;
+            $db =Config::getConnexion();
+        
+            try{
+                $result=$db->query($sql);
+        
+                return $result;
+        
+            }
+            catch (Exception $e){
+                die('Erreur: '.$e->getMessage());
+            }
+        }
     }
 
 ?>
